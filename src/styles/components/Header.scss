@@ -1,0 +1,11 @@
+@import '../_variables.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+
+}
+.header .title {
+    color: $almost-black;
+    text-decoration:dotted ;
+}

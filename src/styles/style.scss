@@ -1,3 +1,7 @@
+@import 'normalize';
+@import '_variables';
+@import '_globals';
+
 body {
-    background-color: blueviolet;
+    background-color: $almost-white;
 }
