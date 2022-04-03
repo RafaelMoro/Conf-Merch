@@ -3,7 +3,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { Home } from '@pages/Home'
 import { NotFound } from '@pages/NotFound'
 import {Layout} from '@components/Layout'
-import '@styles/style.scss'
+import '@styles/main.scss'
 
 const App = () => {
     return(

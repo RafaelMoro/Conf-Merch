@@ -6,6 +6,29 @@
 
 }
 .header .title {
+    width: 70%;
     color: $almost-black;
-    text-decoration:dotted ;
+    font-weight: $bold;
+    font-size: 2rem;
+}
+@media(min-width: 480px) {
+    .header {
+        justify-content: space-around;
+    }
+    .header .title {
+        font-size: 2.5rem;
+    }
+    .icon-tabler-shopping-cart {
+        width: 4.8rem;
+        height: 4.8rem;
+    }
+}
+@media (min-width: 1024px) {
+    .header .title {
+        font-size: 3rem;
+    }
+    .icon-tabler-shopping-cart {
+        width: 5.4rem;
+        height: 5.4rem;
+    }
 }
