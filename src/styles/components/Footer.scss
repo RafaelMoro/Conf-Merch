@@ -9,14 +9,10 @@
 }
 .footer .left-title, .footer .right-title {
     font-size: 1.4rem;
+    font-weight: $regular;
 }
 @media(min-width: 480px) {
     .footer .left-title, .footer .right-title {
         font-size: 1.6rem;
-    }
-}
-@media (min-width: 1024px) {
-    .footer {
-        justify-content: space-evenly;
     }
 }

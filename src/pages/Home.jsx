@@ -1,10 +1,18 @@
-import React from 'react';
+import React from 'react'
+import initialState from '../initialState'
+import {Products} from '@containers/Products'
+import {Product} from '@components/Product'
 
 const Home = () => {
+    const products = initialState.products
     return (
-        <div>
-            <h1>Home</h1>
-        </div>
+        <>
+            <Products>
+                {
+                    products.map(product => (<Product product={product} />) )
+                }
+            </Products>
+        </>
     );
 };
 
