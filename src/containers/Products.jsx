@@ -1,8 +1,8 @@
 import React from 'react';
-
+import '@styles/containers/Products.scss'
 const Products = ({children}) => {
     return (
-        <section>
+        <section className='products'>
             {children}
         </section>
     );
