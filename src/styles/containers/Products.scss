@@ -7,7 +7,7 @@
     .products {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min-content, 50rem));
         justify-content: center;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 35rem));
     }
 }
