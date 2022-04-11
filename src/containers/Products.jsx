@@ -2,9 +2,9 @@ import React from 'react';
 import '@styles/containers/Products.scss'
 const Products = ({children}) => {
     return (
-        <section className='products'>
+        <main className='products'>
             {children}
-        </section>
+        </main>
     );
 };
 
