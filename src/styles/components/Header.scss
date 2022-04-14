@@ -10,6 +10,23 @@
     font-weight: $bold;
     font-size: 2rem;
 }
+.shopping-cart {
+    position: relative;
+}
+.cart-number {
+    position: absolute;
+    bottom: 1.6rem;
+    right: 0.4rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    background-color: $darkblue;
+    color: $almost-white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: $bold;
+    text-align: center;
+    padding-top: 0.4rem;
+}
 @media(min-width: 480px) {
     .header {
         justify-content: space-around;
@@ -21,6 +38,13 @@
         width: 4.8rem;
         height: 4.8rem;
     }
+    .cart-number {
+        bottom: 1.9rem;
+        right: 0.5rem;
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 1.5rem;
+    }
 }
 @media (min-width: 1024px) {
     .header .title {
@@ -29,5 +53,13 @@
     .icon-tabler-shopping-cart {
         width: 5.4rem;
         height: 5.4rem;
+    }
+    .cart-number {
+        bottom: 2.5rem;
+        right: 0.4rem;
+        width: 2.7rem;
+        height: 2.7rem;
+        font-size: 1.8rem;
+        padding-top: 0.4rem;
     }
 }

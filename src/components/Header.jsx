@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import '@styles/components/Header.scss'
+import {useInitialState} from '../hooks/useInitialState'
 
 const Header = () => {
+    const {state: {cart}} = useInitialState()
     const [test, setTest] = React.useState(0)
     const handleClick = () => {
         setTest(test + 1)
@@ -18,7 +20,7 @@ const Header = () => {
                         <path d="M17 17h-11v-14h-2" />
                         <path d="M6 5l14 1l-1 7h-13" />
                     </svg>
-                    {test && <svg className='cart-number'>hola</svg>}
+                    {cart.length > 0 && <p className='cart-number'>{cart.length}</p>}
                 </div>
                 
         </header>
