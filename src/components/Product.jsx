@@ -1,6 +1,5 @@
 import React from 'react';
 import '@styles/components/Product.scss'
-import {useInitialState} from '../hooks/useInitialState'
 import { Context } from '../hooks/stateContext';
 
 const Product = ({product}) => {

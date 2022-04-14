@@ -1,10 +1,15 @@
 import React from 'react';
+import lostAstronaut from '@images/astronauts.png'
 
 const NotFound = () => {
     return (
-        <div>
-            <h1>not Found</h1>
-        </div>
+        <main>
+            <h1>404</h1>
+            <div>
+                <img src={lostAstronaut} alt="Astronauta perdido" />
+                <p>Página no encontrada.</p>
+            </div>
+        </main>
     );
 };
 
