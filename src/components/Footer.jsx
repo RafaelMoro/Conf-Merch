@@ -1,8 +1,8 @@
 import React from 'react';
 import '@styles/components/Footer.scss'
-const Footer = () => {
+const Footer = ({modal}) => {
     return (
-        <footer className='footer'>
+        <footer className={(modal ? "footer darken-bg" : "footer")}>
             <div className='left-title'>
                 <p>Platzi Conference Merch</p>
             </div>

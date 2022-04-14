@@ -3,7 +3,7 @@ import '@styles/containers/Products.scss'
 
 const Products = ({children}) => {
     return (
-        <main className='producs'>
+        <main className='products'>
             {children}
         </main>
     );

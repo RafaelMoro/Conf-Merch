@@ -8,11 +8,11 @@ import '@styles/components/Layout.scss'
 const Layout = ({ children }) => {
     const {toggleModal, modal, state: {cart}} = React.useContext(Context)
     return (
-        <div className='layout'>
+        <div className="layout">
             {modal && <Modal cart={cart} toggleModal={toggleModal} />}
-            <Header />
+            <Header modal={modal} />
                 {children}
-            <Footer />
+            <Footer modal={modal} />
         </div>
     );
 };

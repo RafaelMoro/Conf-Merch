@@ -1,6 +1,6 @@
 @import '../variables.scss';
 
-.modal {
+.modal, .modal--empty {
     padding-top: 1.5rem;
     position: absolute;
     top: 0;
@@ -8,20 +8,56 @@
     width: 100%;
     min-height: 100vh;
     display: grid;
-    grid-template-rows: auto 1fr auto;
-    justify-content: center;
+    grid-template-columns: 20% 60% 20%;
+    grid-auto-flow: row;
+    align-items: center;
     z-index: 1;
+    filter: brightness(100%);
     background-color: $almost-white;
+    border-top: 0.4rem solid $darkblue;
+    border-bottom: 0.4rem solid $darkblue;
 }
-.modal--close {
-    justify-self: end;
+.modal__close-button {
+    grid-column: 3 / 4;
+    align-self: start;
+    margin-top: 2rem;
+    margin-right: 1rem;
+    background-color: $red;
+    border-radius: 2rem;
+}
+.modal__close-button svg {
+    stroke: $almost-white;
 }
 .modal__title {
     margin-top: 2rem;
     font-size: 2rem;
+    align-self: start;
+    justify-self: center;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+.modal__description--empty {
+    font-size: 1.5rem;
+    grid-column: 2 / 3;
+    justify-self: center;
+    align-self: start;
 }
 .products--modal {
+    grid-column: 2 / 3;
     display: flex;
     max-width: 30rem;
     flex-direction: column;
+}
+.modal__pay-button {
+    grid-column: 2 / 3;
+    background-color: $darkblue;
+    color: $almost-white;
+    padding: 1rem;
+    border-radius: 2rem;
+}
+.darken-bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    filter: brightness(50%);
 }

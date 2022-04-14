@@ -7,22 +7,24 @@ const Modal = ({cart, toggleModal}) => {
     const isModal = true
     if(cart.length < 1) {
         return(
-            <div className='modal'>
-                <button className='modal--close' onClick={toggleModal}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-                <h3 className='modal__title'>Tu carrito</h3>
-                <p>Tu carrito está vacio</p>
-            </div>
+            <>
+                <div className='modal--empty'>
+                    <button className='modal__close-button' onClick={toggleModal}>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
+                    <h3 className='modal__title'>Tu carrito</h3>
+                    <p className='modal__description--empty'>Tu carrito está vacio</p>
+                </div>
+            </>
         )
     }else {
         return (
             <div className='modal'>
-                <button onClick={toggleModal}>
+                <button className='modal__close-button' onClick={toggleModal}>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <line x1="18" y1="6" x2="6" y2="18" />
@@ -33,7 +35,7 @@ const Modal = ({cart, toggleModal}) => {
                 <div className='products--modal'>
                     {cart.map(product => (<Product product={product} key={product.id} isModal={isModal} />))}
                 </div>
-                <button>Proceder al pago</button>
+                <button className='modal__pay-button'>Proceder al pago</button>
             </div>
         )
     }

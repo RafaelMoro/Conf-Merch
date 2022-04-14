@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Context } from '../hooks/stateContext';
 import '@styles/components/Header.scss'
 
-const Header = () => {
+const Header = ({modal}) => {
     const {state: {cart}, toggleModal} = React.useContext(Context)
     
     return (
