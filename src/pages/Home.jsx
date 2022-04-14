@@ -5,11 +5,12 @@ import { Context } from '../hooks/stateContext';
 
 const Home = () => {
     const {state: {products}} = React.useContext(Context)
+    const isModal = false
     return (
         <>
             <Products>
                 {
-                   products && products.map(product => (<Product product={product} key={product.id} />) )
+                   products && products.map(product => (<Product product={product} key={product.id} isModal={isModal}/>) )
                 }
             </Products>
         </>

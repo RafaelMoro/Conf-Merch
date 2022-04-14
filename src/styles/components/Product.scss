@@ -6,6 +6,10 @@
     flex-direction: column;
     width: 30rem;
 }
+.product--modal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 .product__image {
     width: 100%;
     height: 20rem;
@@ -13,6 +17,12 @@
 }
 .title-price {
     display: flex;
+    justify-content: space-evenly;
+}
+.title-price--modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-evenly;
 }
 .product__title {

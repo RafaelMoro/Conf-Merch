@@ -1,0 +1,27 @@
+@import '../variables.scss';
+
+.modal {
+    padding-top: 1.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    justify-content: center;
+    z-index: 1;
+    background-color: $almost-white;
+}
+.modal--close {
+    justify-self: end;
+}
+.modal__title {
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+.products--modal {
+    display: flex;
+    max-width: 30rem;
+    flex-direction: column;
+}

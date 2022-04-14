@@ -5,6 +5,7 @@ const Context = React.createContext()
 
 const StateContext = (props) => {
     const [state, setState] = React.useState({})
+    const [modal, setModal] = React.useState(false)
 
     React.useEffect(() => {
         setState(initialState)
@@ -19,10 +20,13 @@ const StateContext = (props) => {
             cart: newCart
         })
     }
+    const toggleModal = () => setModal(!modal)
     return(
         <Context.Provider value={{
             state,
-            addToCart
+            addToCart,
+            toggleModal,
+            modal
         }}>
             {props.children}
         </Context.Provider>
