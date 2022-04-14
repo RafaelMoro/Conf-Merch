@@ -1,9 +1,10 @@
 import React from 'react';
 import '@styles/components/Product.scss'
 import {useInitialState} from '../hooks/useInitialState'
+import { Context } from '../hooks/stateContext';
 
 const Product = ({product}) => {
-    const {addToCart} = useInitialState()
+    const {addToCart} = React.useContext(Context)
     return (
         <article className='product'>
             <picture className='product__image-box'>

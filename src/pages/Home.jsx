@@ -1,15 +1,15 @@
 import React from 'react'
 import {Products} from '@containers/Products'
 import {Product} from '@components/Product'
-import {useInitialState} from '../hooks/useInitialState'
+import { Context } from '../hooks/stateContext';
 
 const Home = () => {
-    const {state: {products}} = useInitialState()
+    const {state: {products}} = React.useContext(Context)
     return (
         <>
             <Products>
                 {
-                    products.map(product => (<Product product={product} key={product.id} />) )
+                   products && products.map(product => (<Product product={product} key={product.id} />) )
                 }
             </Products>
         </>
