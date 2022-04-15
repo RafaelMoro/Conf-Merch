@@ -5,11 +5,20 @@ import {Product} from '@components/Product'
 
 const Modal = ({cart, toggleModal}) => {
     const isModal = true
+
+    const closeModal = () => {
+        const divModal = document.querySelector('#modal')
+        divModal.classList.remove('fadeInRight')
+        divModal.classList.add('fadeOutRight')
+
+        setTimeout(() => toggleModal(), 400)
+    }
+
     if(cart.length < 1) {
         return(
             <>
-                <div className='modal--empty'>
-                    <button className='modal__close-button' onClick={toggleModal}>
+                <div id='modal' className={(isModal ? "modal--empty fadeInRight animated" : "modal--empty fadeOutRight animated")}>
+                    <button className='modal__close-button' onClick={closeModal}>
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <line x1="18" y1="6" x2="6" y2="18" />
@@ -23,8 +32,8 @@ const Modal = ({cart, toggleModal}) => {
         )
     }else {
         return (
-            <div className='modal'>
-                <button className='modal__close-button' onClick={toggleModal}>
+            <div id='modal' className={(isModal ? "modal fadeInRight animated" : "modal fadeOutRight animated")}>
+                <button className='modal__close-button' onClick={closeModal}>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <line x1="18" y1="6" x2="6" y2="18" />

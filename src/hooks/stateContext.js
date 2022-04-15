@@ -21,6 +21,7 @@ const StateContext = (props) => {
         })
     }
     const toggleModal = () => setModal(!modal)
+    
     return(
         <Context.Provider value={{
             state,
