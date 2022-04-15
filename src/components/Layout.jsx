@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     const {toggleModal, modal, state: {cart}} = React.useContext(Context)
     return (
         <div className="layout">
-            {modal && <Modal cart={cart} toggleModal={toggleModal} />}
+            {modal && <Modal cart={cart} toggleModal={toggleModal} modal={modal} />}
             <Header modal={modal} />
                 {children}
             <Footer modal={modal} />
