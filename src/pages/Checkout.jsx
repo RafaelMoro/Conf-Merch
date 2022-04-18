@@ -1,4 +1,5 @@
 import React from 'react'
+import {ProductCheckout} from '@components/ProductCheckout'
 import { Context } from '../hooks/stateContext';
 
 const Checkout = () => {
@@ -9,14 +10,7 @@ const Checkout = () => {
             <main className='checkout'>
                 <h1 className='checkout__title'>Lista de articulos:</h1>
                 {
-                    (cart.length > 0) && cart.map(product => {
-                       return (
-                            <section className='products--checkout'>
-                                <h4>{product.title}</h4>
-                                <p>{product.price}</p>
-                            </section>
-                        )
-                    })
+                    (cart.length > 0) && cart.map(product => (<ProductCheckout product={product} />))
                 }
             </main>
         )
