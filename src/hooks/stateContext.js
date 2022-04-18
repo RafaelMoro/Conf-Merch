@@ -11,14 +11,40 @@ const StateContext = (props) => {
         setState(initialState)
     }, [])
 
-    const addToCart = (product) => {
+    const addToCart = (item) => {
         const {cart} = state
         const newCart = [...cart]
-        newCart.push(product)
-        setState({
-            ...state,
-            cart: newCart
-        })
+
+        if(newCart.length > 0) {
+            const cartModified = newCart.map(product => {
+                if(product.id === item.id) {
+                    console.log('son iguales')
+                    return {
+                        ...product,
+                        quantity: product.quantity + 1
+                    }
+                }else {
+                    return {...product}
+                }
+            })
+            console.log(cartModified)
+            setState({
+                ...state,
+                cart: cartModified
+            })
+        } else {
+            const newProduct = {
+                ...item,
+                quantity: 1
+            }
+            newCart.push(newProduct)
+            setState({
+                ...state,
+                cart: newCart
+            })
+            console.log(state)
+        }
+
     }
     const toggleModal = () => setModal(!modal)
     
