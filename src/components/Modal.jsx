@@ -1,6 +1,7 @@
 import React from 'react'
-import '@styles/components/Modal.scss'
+import { Link } from 'react-router-dom'
 import {Product} from '@components/Product'
+import '@styles/components/Modal.scss'
 
 const Modal = ({cart, toggleModal}) => {
 
@@ -44,7 +45,7 @@ const Modal = ({cart, toggleModal}) => {
                 <div className='products--modal'>
                     {cart.map(product => (<Product product={product} key={product.id} inModal={inModal} />))}
                 </div>
-                <button className='modal__pay-button'>Proceder al pago</button>
+                <button className='modal__pay-button' onClick={closeModal}><Link to="/checkout">Proceder al pago</Link></button>
             </div>
         )
     }
