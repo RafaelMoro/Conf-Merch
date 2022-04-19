@@ -4,7 +4,7 @@ import { Context } from '../hooks/stateContext';
 import '@styles/components/Header.scss'
 
 const Header = ({modal}) => {
-    const {state: {cart}, toggleModal} = React.useContext(Context)
+    const {state: {cart}, toggleModal, totalCart} = React.useContext(Context)
     
     return (
         <header className={(modal ? "header darken-bg" : "header")}>
@@ -17,7 +17,7 @@ const Header = ({modal}) => {
                     <path d="M17 17h-11v-14h-2" />
                     <path d="M6 5l14 1l-1 7h-13" />
                 </svg>
-                {(cart)&&(cart.length > 0) && <p className='cart-number'>{cart.length}</p>}
+                {(cart)&&(cart.length > 0) && <p className='cart-number'>{totalCart}</p>}
             </div>
         </header>
     );

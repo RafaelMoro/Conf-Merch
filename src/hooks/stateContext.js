@@ -6,6 +6,7 @@ const Context = React.createContext()
 const StateContext = (props) => {
     const [state, setState] = React.useState({})
     const [modal, setModal] = React.useState(false)
+    const [totalCart, setTotalCart] = React.useState(0)
 
     React.useEffect(() => {
         setState(initialState)
@@ -15,7 +16,8 @@ const StateContext = (props) => {
         const {cart} = state
         const newCart = [...cart]
         const newProduct = { ...item, quantity: 1 }
- 
+        setTotalCart(totalCart + 1)
+
         if(newCart.length < 1) {
             newCart.push(newProduct)
             setState({
@@ -46,7 +48,7 @@ const StateContext = (props) => {
                     ...state,
                     cart: newCart
                 })
-            }   
+            }
         }
     }
     const toggleModal = () => setModal(!modal)
@@ -56,7 +58,8 @@ const StateContext = (props) => {
             state,
             addToCart,
             toggleModal,
-            modal
+            modal,
+            totalCart
         }}>
             {props.children}
         </Context.Provider>
