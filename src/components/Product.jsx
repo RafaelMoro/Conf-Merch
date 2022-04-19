@@ -11,7 +11,10 @@ const Product = ({product, inModal}) => {
             </picture>
             <div className={(inModal ? 'title-price--modal' : 'title-price')}>
                 <h3 className='product__title'>{product.title}</h3>
-                {inModal && <p className='product__quantity'>Quantity: {product.quantity}</p>}
+                {inModal && <div className='quantity'>
+                    <p>Quantity: </p>
+                    <input className='quantity__input' type='number' value={product.quantity} />
+                </div> }
                 <p className='product__price'>${product.price}</p>
             </div>
             {!inModal && <p className='product__description'>{product.description}</p>}
