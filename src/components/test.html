@@ -34,22 +34,23 @@
         console.log(rafael)
 
         const mmgvs = [rafael, beto, jorge]
-        const nuevosMmgv = mmgvs.filter(mmgv => mmgv.name !== 'Beto')
+        //const nuevosMmgv = mmgvs.filter(mmgv => mmgv.name !== 'Beto')
         console.log('mmgvs', mmgvs)
 
         const nuevosMmgv2 = mmgvs.map(mmgv => {
-            if(mmgv.age === 30) {
+            if(mmgv.age === 40) {
                 return {
                     ...mmgv,
                     age: mmgv.age + 1
                 }
             }else {
-                return {
-                    ...mmgv
-                }
+                return mmgv
             }
         })
+        const personaExiste = mmgvs.some(persona => persona.name === 'Beto')
+        console.log('personaExiste',personaExiste)
         console.log('nuevosMmmgvs2' ,nuevosMmgv2)
+        console.log(nuevosMmgv2 == mmgvs)
 
     //     const addToCart = (item) => {
     //     const {cart} = state

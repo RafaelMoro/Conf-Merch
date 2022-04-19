@@ -14,37 +14,40 @@ const StateContext = (props) => {
     const addToCart = (item) => {
         const {cart} = state
         const newCart = [...cart]
-
-        if(newCart.length > 0) {
-            const cartModified = newCart.map(product => {
-                if(product.id === item.id) {
-                    console.log('son iguales')
-                    return {
-                        ...product,
-                        quantity: product.quantity + 1
-                    }
-                }else {
-                    return {...product}
-                }
-            })
-            console.log(cartModified)
-            setState({
-                ...state,
-                cart: cartModified
-            })
-        } else {
-            const newProduct = {
-                ...item,
-                quantity: 1
-            }
+        const newProduct = { ...item, quantity: 1 }
+ 
+        if(newCart.length < 1) {
             newCart.push(newProduct)
             setState({
                 ...state,
                 cart: newCart
             })
-            console.log(state)
+        } else {
+            //Check if the item already exists on the array
+            const productExist = newCart.some(product => product.id === item.id)
+            if(productExist) {
+                //Create a new array modifying the quantity of the item
+                const modifiedCart = newCart.map(product => {
+                    if(product.id === item.id) {
+                        return {
+                            ...product,
+                            quantity: product.quantity + 1
+                        }
+                    }else return product
+                })
+                setState({
+                    ...state,
+                    cart: modifiedCart
+                })
+            } else {
+                //Push the new product to the cart
+                newCart.push(newProduct)
+                setState({
+                    ...state,
+                    cart: newCart
+                })
+            }   
         }
-
     }
     const toggleModal = () => setModal(!modal)
     
