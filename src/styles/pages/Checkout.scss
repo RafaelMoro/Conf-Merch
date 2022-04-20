@@ -17,10 +17,13 @@
     font-size: 1.8rem;
     font-weight: $bold;
 }
-.checkout__total button {
+.checkout__button--pay, .checkout__button--cancel {
     margin-top: 3rem;
     padding: 1rem;
     background-color: $darkblue;
     color: $almost-white;
     border-radius: 2rem;
+}
+.checkout__button--cancel {
+    background-color: $red;
 }

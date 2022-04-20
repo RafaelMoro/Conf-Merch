@@ -13,12 +13,13 @@ const Checkout = () => {
                 <h1 className='checkout__title'>Lista de articulos:</h1>
                 <div className='products--checkout'>
                     {
-                        (cart.length > 0) && cart.map(product => (<Product product={product} key={product.id} inHome={false} />))
+                        (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} inHome={false} />))
                     }
                 </div>
                 <div className='checkout__total'>
                     <p>Precio total ${total}</p>
-                    <button>Continuar Pedido</button>
+                    <button className='checkout__button--cancel'>Continuar comprando</button>
+                    <button className='checkout__button--pay'>Finalizar Pedido</button>
                 </div>
             </section>
         )

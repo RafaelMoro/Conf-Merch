@@ -4,9 +4,14 @@ import { Context } from '../hooks/stateContext';
 
 const Product = ({product, inHome}) => {
     const {addToCart, modifyQuantity} = React.useContext(Context)
+
     const handlerQuantity = (event) => {
         const newQuantity = event.target.value
-        modifyQuantity(newQuantity, product)
+        if(newQuantity == '') {
+            alert('ingrese una cantidad por favor')
+        }else {
+            modifyQuantity(newQuantity, product)
+        }
     }
     return (
         <article className={(!inHome ? 'product--modal' : 'product')}>
@@ -17,7 +22,7 @@ const Product = ({product, inHome}) => {
                 <h3 className='product__title'>{product.title}</h3>
                 {!inHome && <div className='quantity'>
                     <p>Cantidad: </p>
-                    <input onChange={handlerQuantity} className='quantity__input' type='number' defaultValue={product.quantity} />
+                    <input onChange={handlerQuantity} className='quantity__input' type='number' defaultValue={product.quantity} min='0' />
                 </div> }
                 <p className='product__price'>${product.price}</p>
             </div>

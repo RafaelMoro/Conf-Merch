@@ -33,10 +33,10 @@ const StateContext = (props) => {
             })
         } else {
             //Check if the item already exists on the array
-            const productExist = newCart.some(product => product.id === item.id)
+            const productExist = cart.some(product => product.id === item.id)
             if(productExist) {
                 //Create a new array modifying the quantity of the item
-                const modifiedCart = newCart.map(product => {
+                const modifiedCart = cart.map(product => {
                     if(product.id === item.id) {
                         return {
                             ...product,
@@ -59,15 +59,17 @@ const StateContext = (props) => {
         }
     }
     const modifyQuantity = (quantity, item) => {
-        //en base a su id del product, buscarlo y cambiar su cantidad
+        const quantityNumber = parseInt(quantity)
         const {cart} = state
+        if(quantityNumber === 0) {
+            deleteProductFromCart(item)
+        }
         if(cart) {
-            const newCart = [...cart]
-            const cartModified = newCart.map(product => {
+            const cartModified = cart.map(product => {
                 if(product.id === item.id) {
                     return {
                         ...product,
-                        quantity: quantity
+                        quantity: quantityNumber
                     }
                 }else return product
             })
@@ -76,7 +78,18 @@ const StateContext = (props) => {
                 cart: cartModified
             })
         }
-        
+    }
+
+    const deleteProductFromCart = (item) => {
+        const {id} = item
+        const {cart} = state
+        if(cart) {
+            const cartModified = cart.filter(product => product.id !== id)
+            setState({
+                ...cart,
+                cart: cartModified
+            })
+        }
     }
     const toggleModal = () => setModal(!modal)
     
@@ -87,7 +100,7 @@ const StateContext = (props) => {
             toggleModal,
             modal,
             totalCart,
-            modifyQuantity
+            modifyQuantity,
         }}>
             {props.children}
         </Context.Provider>
