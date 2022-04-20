@@ -34,8 +34,12 @@
     gap: 1rem;
 }
 .quantity__input {
-    width: 50%;
+    width: 40%;
     text-align: center;
+    background-color: $almost-white;
+    border: 1px solid $darkblue;
+    border-radius: 2rem;
+    padding: 0.5rem 0;
 }
 .product__price, .quantity p {
     font-size: 1.5rem;

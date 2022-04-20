@@ -6,12 +6,12 @@ import { Context } from '../hooks/stateContext';
 const Home = () => {
     const {state: {products}, modal} = React.useContext(Context)
     //This variable is to indicate if the products are being rendered on the modal or Home
-    const inModal = false
+    const inHome = true
     return (
         <main className={(modal && "darken-bg")}>
             <Products>
                 {
-                   products && products.map(product => (<Product product={product} key={product.id} inModal={inModal} />) )
+                   products && products.map(product => (<Product product={product} key={product.id} inHome={inHome} />) )
                 }
             </Products>
         </main>
