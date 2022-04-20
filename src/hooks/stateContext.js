@@ -12,11 +12,18 @@ const StateContext = (props) => {
         setState(initialState)
     }, [])
 
+    React.useEffect(() => {
+        const {cart} = state
+        if(cart) {
+            const totalQuantity = cart.reduce((acc, product) => acc + parseInt(product.quantity), 0)
+            setTotalCart(totalQuantity)
+        }
+    }, [state.cart])
+
     const addToCart = (item) => {
         const {cart} = state
         const newCart = [...cart]
         const newProduct = { ...item, quantity: 1 }
-        setTotalCart(totalCart + 1)
 
         if(newCart.length < 1) {
             newCart.push(newProduct)
@@ -51,6 +58,26 @@ const StateContext = (props) => {
             }
         }
     }
+    const modifyQuantity = (quantity, item) => {
+        //en base a su id del product, buscarlo y cambiar su cantidad
+        const {cart} = state
+        if(cart) {
+            const newCart = [...cart]
+            const cartModified = newCart.map(product => {
+                if(product.id === item.id) {
+                    return {
+                        ...product,
+                        quantity: quantity
+                    }
+                }else return product
+            })
+            setState({
+                ...state,
+                cart: cartModified
+            })
+        }
+        
+    }
     const toggleModal = () => setModal(!modal)
     
     return(
@@ -59,7 +86,8 @@ const StateContext = (props) => {
             addToCart,
             toggleModal,
             modal,
-            totalCart
+            totalCart,
+            modifyQuantity
         }}>
             {props.children}
         </Context.Provider>

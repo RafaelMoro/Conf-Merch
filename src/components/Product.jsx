@@ -3,7 +3,11 @@ import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
 
 const Product = ({product, inHome}) => {
-    const {addToCart} = React.useContext(Context)
+    const {addToCart, modifyQuantity} = React.useContext(Context)
+    const handlerQuantity = (event) => {
+        const newQuantity = event.target.value
+        modifyQuantity(newQuantity, product)
+    }
     return (
         <article className={(!inHome ? 'product--modal' : 'product')}>
             <picture className='product__image-box'>
@@ -13,7 +17,7 @@ const Product = ({product, inHome}) => {
                 <h3 className='product__title'>{product.title}</h3>
                 {!inHome && <div className='quantity'>
                     <p>Cantidad: </p>
-                    <input className='quantity__input' type='number' defaultValue={product.quantity} />
+                    <input onChange={handlerQuantity} className='quantity__input' type='number' defaultValue={product.quantity} />
                 </div> }
                 <p className='product__price'>${product.price}</p>
             </div>
