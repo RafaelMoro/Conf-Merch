@@ -5,6 +5,7 @@ import { NotFound } from '@pages/NotFound'
 import { Checkout } from '@pages/Checkout'
 import {Information} from '@pages/Information'
 import {Payment} from '@pages/Payment'
+import {Success} from '@pages/Success'
 import {Layout} from '@components/Layout'
 import {StateContext} from '../hooks/stateContext'
 import '@styles/main.scss'
@@ -19,6 +20,7 @@ const App = () => {
                         <Route exact path="/checkout" element={<Checkout />} />
                         <Route exact path="/checkout/information" element={<Information />} />
                         <Route exact path="/checkout/payment" element={<Payment />} />
+                        <Route exact path="/checkout/success" element={<Success />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Layout>

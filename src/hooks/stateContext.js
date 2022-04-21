@@ -67,6 +67,12 @@ const StateContext = (props) => {
             buyer: newBuyer
         })
     }
+    const addNewOrder = (order) => {
+        setState({
+            ...state,
+            orders: order
+        })
+    }
     const modifyQuantity = (quantity, item) => {
         const quantityNumber = parseInt(quantity)
         const {cart} = state
@@ -110,7 +116,8 @@ const StateContext = (props) => {
             totalCart,
             modifyQuantity,
             deleteProductFromCart,
-            addBuyer
+            addBuyer,
+            addNewOrder
         }}>
             {props.children}
         </Context.Provider>

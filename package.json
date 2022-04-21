@@ -14,6 +14,7 @@
   "author": "Rafael Moro <rafael.moro.galindo@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@paypal/react-paypal-js": "^7.6.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0"
@@ -27,6 +28,7 @@
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
+    "dotenv-webpack": "^7.1.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",

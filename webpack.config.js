@@ -5,6 +5,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const DotEnv = require('dotenv-webpack')
 
 
 module.exports = {
@@ -70,7 +71,8 @@ module.exports = {
                     to: "assets/images"
                 }
             ]
-        })
+        }),
+        new DotEnv()
     ],
     optimization: {
         minimize: true,

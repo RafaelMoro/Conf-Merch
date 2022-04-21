@@ -23,7 +23,7 @@ const Information = () => {
             'phone': formData.get('phone'),
         }
         addBuyer(buyer)
-        navigate('/checkout/payment')
+        navigate('/checkout/payment', {state: {total: location.state}})
     }
     if((cart)&&(cart.length > 0)) {
         return (
