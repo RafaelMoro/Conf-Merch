@@ -9,6 +9,7 @@ const Checkout = () => {
 
     if((cart)&&(cart.length > 0)) {
         const total = cart.reduce((acc, product) => (acc + (product.price * product.quantity)), 0)
+
         return(
             <section className={(modal ? "darken-bg checkout" : "checkout")}>
                 <h1 className='checkout__title'>Lista de articulos:</h1>
@@ -20,7 +21,7 @@ const Checkout = () => {
                 <div className='checkout__total'>
                     <p>Precio total ${total}</p>
                     <button className='checkout__button--cancel'><Link to="/">Continuar comprando</Link></button>
-                    <button className='checkout__button--pay'><Link to="/checkout/information">Finalizar Pedido</Link></button>
+                    <button className='checkout__button--pay'><Link to="/checkout/information" state={total}>Finalizar Pedido</Link></button>
                 </div>
             </section>
         )

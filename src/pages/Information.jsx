@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import {Product} from '@components/Product'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Context } from '../hooks/stateContext';
 import '@styles/pages/Information.scss'
 
@@ -8,6 +7,7 @@ const Information = () => {
     const {state: {cart}, addBuyer} = React.useContext(Context)
     const form = React.useRef(null)
     const navigate = useNavigate()
+    const location = useLocation()
 
     const handleSubmit = () => {
         const formData = new FormData(form.current)
@@ -53,12 +53,7 @@ const Information = () => {
                     </div>
                 </main>
                 <aside>
-                    <h2>Resumen de su compra: </h2>
-                    <div className='products--information'>
-                        {
-                            (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} inHome={false} />))
-                        }
-                    </div>
+                    <h2>Total a pagar: {location.state} </h2>
                 </aside>
             </div>
         )
