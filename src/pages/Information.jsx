@@ -5,7 +5,7 @@ import { Context } from '../hooks/stateContext';
 import '@styles/pages/Information.scss'
 
 const Information = () => {
-    const {state: {cart}} = React.useContext(Context)
+    const {state: {cart}, addBuyer} = React.useContext(Context)
     const form = React.useRef(null)
     const navigate = useNavigate()
 
@@ -23,6 +23,7 @@ const Information = () => {
             'phone': formData.get('phone'),
         }
         //add to buyer function
+        addBuyer(buyer)
         navigate('/checkout/payment')
     }
     if((cart)&&(cart.length > 0)) {

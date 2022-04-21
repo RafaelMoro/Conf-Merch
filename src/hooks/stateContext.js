@@ -58,6 +58,15 @@ const StateContext = (props) => {
             }
         }
     }
+    const addBuyer = (person) => {
+        const {buyer} = state
+        const newBuyer = [...buyer]
+        newBuyer.push(person)
+        setState({
+            ...state,
+            buyer: newBuyer
+        })
+    }
     const modifyQuantity = (quantity, item) => {
         const quantityNumber = parseInt(quantity)
         const {cart} = state
@@ -92,7 +101,7 @@ const StateContext = (props) => {
         }
     }
     const toggleModal = () => setModal(!modal)
-    
+    React.useEffect(() => console.log(state.buyer), [state.buyer])
     return(
         <Context.Provider value={{
             state,
@@ -101,7 +110,8 @@ const StateContext = (props) => {
             modal,
             totalCart,
             modifyQuantity,
-            deleteProductFromCart
+            deleteProductFromCart,
+            addBuyer
         }}>
             {props.children}
         </Context.Provider>
