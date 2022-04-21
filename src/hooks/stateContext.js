@@ -101,6 +101,7 @@ const StateContext = (props) => {
             modal,
             totalCart,
             modifyQuantity,
+            deleteProductFromCart
         }}>
             {props.children}
         </Context.Provider>
