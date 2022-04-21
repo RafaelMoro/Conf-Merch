@@ -86,7 +86,7 @@ const StateContext = (props) => {
         if(cart) {
             const cartModified = cart.filter(product => product.id !== id)
             setState({
-                ...cart,
+                ...state,
                 cart: cartModified
             })
         }

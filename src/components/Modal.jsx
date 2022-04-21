@@ -14,7 +14,6 @@ const Modal = ({cart, toggleModal}) => {
     }
     //This variable is to indicate if the products are being rendered on the modal or Home
     const inHome = false
-    const inCheckout = false
 
     if(cart.length < 1) {
         return(
@@ -44,7 +43,7 @@ const Modal = ({cart, toggleModal}) => {
                 </button>
                 <h3 className='modal__title'>Tu carrito</h3>
                 <div className='products--modal'>
-                    {cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} inHome={inHome} inCheckout={inCheckout} />))}
+                    {cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} inHome={inHome} />))}
                 </div>
                 <button className='modal__pay-button' onClick={closeModal}><Link to="/checkout">Proceder al pago</Link></button>
             </div>

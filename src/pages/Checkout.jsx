@@ -6,7 +6,6 @@ import '@styles/pages/Checkout.scss'
 
 const Checkout = () => {
     const {state: {cart}, modal} = React.useContext(Context)
-    const inCheckout = true
 
     if((cart)&&(cart.length > 0)) {
         const total = cart.reduce((acc, product) => (acc + (product.price * product.quantity)), 0)
@@ -15,7 +14,7 @@ const Checkout = () => {
                 <h1 className='checkout__title'>Lista de articulos:</h1>
                 <div className='products--checkout'>
                     {
-                        (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} inHome={false} inCheckout={inCheckout} />))
+                        (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} inHome={false} />))
                     }
                 </div>
                 <div className='checkout__total'>

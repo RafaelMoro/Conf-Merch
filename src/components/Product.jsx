@@ -2,7 +2,7 @@ import React from 'react';
 import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
 
-const Product = ({product, inHome, inCheckout}) => {
+const Product = ({product, inHome}) => {
     const {addToCart, modifyQuantity, deleteProductFromCart} = React.useContext(Context)
 
     const handlerQuantity = (event) => {
