@@ -4,11 +4,18 @@
     grid-template-columns: 100%;
     grid-template-rows: 9.4rem auto auto;
 }
+.checkout--empty {
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+}
 .checkout__title {
     font-size: 1.8rem;
     place-self: center;
 }
-
+.checkout--empty h1 {
+    font-size: 1.6rem;
+}
 .checkout__total {
     display: grid;
     justify-items: center;
@@ -34,8 +41,13 @@
 .checkout__button--cancel {
     background-color: $red;
 }
-.checkout__button--cancel a {
+.checkout__button--cancel a, .checkout__button--pay a {
     color: $almost-white;
+}
+@media (min-width: 480px) {
+    .checkout--empty h1 {
+        font-size: 1.8rem;
+    }
 }
 @media (min-width: 1024px) {
     .checkout {
@@ -57,5 +69,7 @@
         font-size: 1.8rem;
         font-weight: $bold;
     }
-    
+    .checkout--empty h1 {
+        font-size: 2.5rem;
+    }
 }

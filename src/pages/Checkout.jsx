@@ -20,16 +20,15 @@ const Checkout = () => {
                 <div className='checkout__total'>
                     <p>Precio total ${total}</p>
                     <button className='checkout__button--cancel'><Link to="/">Continuar comprando</Link></button>
-                    <button className='checkout__button--pay'>Finalizar Pedido</button>
+                    <button className='checkout__button--pay'> <Link to="/information">Finalizar Pedido</Link></button>
                 </div>
             </section>
         )
     } else {
         return(
-            <main>
-                <h1>Lista de articulos:</h1>
-                <h2>No tienes articulos en tu carrito</h2>
-            </main>
+            <article className='checkout--empty'>
+                <h1>No tienes articulos en tu carrito</h1>
+            </article>
         )
     }
 }
