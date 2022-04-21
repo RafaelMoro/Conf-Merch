@@ -22,7 +22,6 @@ const Information = () => {
             'cp': formData.get('cp'),
             'phone': formData.get('phone'),
         }
-        //add to buyer function
         addBuyer(buyer)
         navigate('/checkout/payment')
     }

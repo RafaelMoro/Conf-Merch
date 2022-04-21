@@ -14,7 +14,7 @@ const Checkout = () => {
                 <h1 className='checkout__title'>Lista de articulos:</h1>
                 <div className='products--checkout'>
                     {
-                        (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} inHome={false} />))
+                        (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} />))
                     }
                 </div>
                 <div className='checkout__total'>

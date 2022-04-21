@@ -101,7 +101,6 @@ const StateContext = (props) => {
         }
     }
     const toggleModal = () => setModal(!modal)
-    React.useEffect(() => console.log(state.buyer), [state.buyer])
     return(
         <Context.Provider value={{
             state,
