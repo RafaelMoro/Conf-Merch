@@ -43,11 +43,7 @@
     align-self: start;
 }
 .products--modal {
-    grid-column: 2 / 3;
-    display: flex;
-    max-width: 30rem;
-    flex-direction: column;
-    justify-self: center;
+    grid-column: 1 / 4;
 }
 .modal__pay-button {
     grid-column: 2 / 3;

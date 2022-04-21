@@ -39,6 +39,7 @@
     justify-content: space-evenly;
 }
 .quantity__input {
+    min-width: 7rem;
     width: 40%;
     text-align: center;
     background-color: $almost-white;

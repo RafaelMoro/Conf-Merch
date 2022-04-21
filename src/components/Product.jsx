@@ -14,7 +14,7 @@ const Product = ({product}) => {
         }
     }
     return (
-        <article className="product--modal'">
+        <article className="product--modal">
             <picture className='product__image-box'>
                 <img className='product__image' src={product.image} alt={product.name} />
             </picture>
