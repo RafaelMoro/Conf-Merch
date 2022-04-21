@@ -33,6 +33,11 @@
     display: flex;
     gap: 1rem;
 }
+.product__trash-price {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
 .quantity__input {
     width: 40%;
     text-align: center;
@@ -64,5 +69,9 @@
     }
     .product__title {
         font-size: 1.8rem;
+    }
+    .icon-tabler-trash {
+        width: 3.8rem;
+        height: 3.8rem;
     }
 }

@@ -34,6 +34,9 @@
 .checkout__button--cancel {
     background-color: $red;
 }
+.checkout__button--cancel a {
+    color: $almost-white;
+}
 @media (min-width: 1024px) {
     .checkout {
         display: grid;
