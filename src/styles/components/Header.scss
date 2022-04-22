@@ -7,12 +7,17 @@
 }
 .header .title {
     width: 70%;
-    color: $almost-black;
     font-weight: $bold;
     font-size: 2rem;
 }
+.header .title a {
+    color: $white;
+}
 .shopping-cart {
     position: relative;
+}
+.shopping-cart svg {
+    stroke: $white;
 }
 .cart-number {
     position: absolute;
@@ -20,8 +25,8 @@
     right: 0.4rem;
     width: 1.8rem;
     height: 1.8rem;
-    background-color: $darkblue;
-    color: $almost-white;
+    background-color: $secondary-color;
+    color: $white;
     border-radius: 50%;
     font-size: 12px;
     font-weight: $bold;

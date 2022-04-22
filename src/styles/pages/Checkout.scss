@@ -9,7 +9,11 @@
     justify-content: center;
     padding-top: 3rem;
 }
+.checkout--empty h1 {
+    color: $white;
+}
 .checkout__title {
+    color: $white;
     font-size: 1.8rem;
     place-self: center;
 }
@@ -23,26 +27,30 @@
     padding-bottom: 2rem;
 }
 .checkout__total p {
+    color: $white;
     grid-column: 1 / 3;
     font-size: 1.7rem;
+    font-weight: $regular;
+}
+.checkout__total p span {
     font-weight: $bold;
 }
-.checkout__button--cancel, .checkout__button--pay {
+.checkout__button--pay, .checkout__button--cancel {
     font-size: 1.3rem;
     height: 4rem;
-}
-.checkout__button--pay, .checkout__button--cancel {
     margin-top: 3rem;
     padding: 1rem;
-    background-color: $darkblue;
-    color: $almost-white;
+    color: $white;
     border-radius: 2rem;
 }
+.checkout__button--pay {
+    background-color: $positive;
+}
 .checkout__button--cancel {
-    background-color: $red;
+    background-color: $negative;
 }
 .checkout__button--cancel a, .checkout__button--pay a {
-    color: $almost-white;
+    color: $white;
 }
 @media (min-width: 480px) {
     .checkout--empty h1 {

@@ -19,7 +19,7 @@ const Checkout = () => {
                     }
                 </div>
                 <div className='checkout__total'>
-                    <p>Precio total ${total}</p>
+                    <p>Precio total <span>${total}</span></p>
                     <button className='checkout__button--cancel'><Link to="/">Continuar comprando</Link></button>
                     <button className='checkout__button--pay'><Link to="/checkout/information" state={total}>Finalizar Pedido</Link></button>
                 </div>

@@ -52,8 +52,8 @@ const Information = () => {
                         <button className='checkout__button--pay' onClick={handleSubmit}>Pagar</button>
                     </div>
                 </main>
-                <aside>
-                    <h2>Total a pagar: {location.state} </h2>
+                <aside className='information--payment'>
+                    <p>Total a pagar: <span>${location.state}</span> </p>
                 </aside>
             </div>
         )

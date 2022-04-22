@@ -1,11 +1,14 @@
+@import '../_variables.scss';
 .success {
     padding: 0 2rem;
 }
 .success__title {
+    color: $white;
     margin: 2rem 0;
     text-align: center;
 }
 .success__description {
+    color: $white;
     margin: 0 0 2rem 2rem;
     font-size: 1.5rem;
 }
