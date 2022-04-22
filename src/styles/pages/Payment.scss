@@ -1,0 +1,39 @@
+.payment__title {
+    margin-top: 4rem;
+    text-align: center;
+}
+.payment p {
+    margin: 3rem 0;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.payment p span {
+    font-weight: bold;
+}
+.payment__buttons {
+    margin: 0 auto;
+    max-width: 40rem;
+}
+
+@media (min-width: 1024px) {
+    .payment {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 10% 70%;
+        padding-left: 2rem;
+        align-content: center;
+    }
+    .payment__title {
+        justify-self: center;
+    }
+    .payment p {
+        justify-self: center;
+        margin-top: 3rem;
+        font-size: 1.8rem;
+    }
+    .payment__buttons {
+        justify-self: center;
+        width: 100%;
+        max-width: 50rem;
+    } 
+}

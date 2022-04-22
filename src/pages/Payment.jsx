@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Context } from '../hooks/stateContext';
+import '@styles/pages/Payment.scss'
 
 const Payment = () => {
     const {state: {cart, buyer}, addNewOrder} = React.useContext(Context)
@@ -38,12 +39,16 @@ const Payment = () => {
     }
     
     return(
-        <>
-            <h1>Payment</h1>
-            <PayPalScriptProvider options={paypalOptions}>
-                <PayPalButtons style={{ layout: "vertical" }} createOrder={(data, actions) => handleCreateOrder(data, actions)} onApprove={data => handlePaymentSuccess(data)} />
-            </PayPalScriptProvider>
-        </>
+        <main className='payment'>
+            <h1 className='payment__title'>Metodo de pago:</h1>
+            <p className='payment__total'>Total a pagar: <span>${total} usd</span></p>
+            <div className='payment__buttons'>
+                <PayPalScriptProvider options={paypalOptions}>
+                    <PayPalButtons style={{ layout: "vertical" }} createOrder={(data, actions) => handleCreateOrder(data, actions)} onApprove={data => handlePaymentSuccess(data)} />
+                </PayPalScriptProvider>
+            </div>
+            
+        </main>
     )
 }
 export {Payment}
