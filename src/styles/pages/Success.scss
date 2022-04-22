@@ -1,0 +1,20 @@
+.success {
+    padding: 0 2rem;
+}
+.success__title {
+    margin: 2rem 0;
+    text-align: center;
+}
+.success__description {
+    margin: 0 0 2rem 2rem;
+    font-size: 1.5rem;
+}
+.success__map {
+    margin: 10px 0 0 0;
+    height: 50vh;
+    width: 100%;
+  }
+.leaflet-container {
+    width: 100%;
+    height: 50vh;
+}
