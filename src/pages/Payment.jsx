@@ -15,7 +15,8 @@ const Payment = () => {
         intent: 'capture',
         currency: 'USD'
     }
-
+    console.log(process.env.CLIENT_ID)
+    console.log(paypalOptions)
     const handleCreateOrder = (data, actions) => {
         return actions.order.create({
             purchase_units: [
