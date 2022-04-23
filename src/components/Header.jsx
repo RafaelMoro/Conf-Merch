@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { Context } from '../hooks/stateContext';
+import logo from '@images/logo.png'
 import '@styles/components/Header.scss'
 
 const Header = ({modal}) => {
@@ -8,7 +9,12 @@ const Header = ({modal}) => {
     
     return (
         <header className={(modal ? "header darken-bg" : "header")}>
-            <h1 className='title' ><Link to="/"> Platzi conference Merch </Link></h1>
+            <div className='title' >
+                <Link to="/">
+                    <img src={logo} alt="logo" />
+                    Platzi Merch
+                 </Link>
+            </div>
             <div className="shopping-cart" onClick={toggleModal}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-shopping-cart" width="38" height="38" viewBox="0 0 24 24" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
