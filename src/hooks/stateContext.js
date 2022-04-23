@@ -107,6 +107,12 @@ const StateContext = (props) => {
             })
         }
     }
+    const resetCart = () => {
+        setState({
+            ...state,
+            cart: []
+        })
+    }
     const toggleModal = () => setModal(!modal)
     const toggleCart = () => setHideCart(!hideCart)
     return(
@@ -121,7 +127,8 @@ const StateContext = (props) => {
             addBuyer,
             addNewOrder,
             hideCart,
-            toggleCart
+            toggleCart,
+            resetCart
         }}>
             {props.children}
         </Context.Provider>

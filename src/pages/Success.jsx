@@ -1,8 +1,11 @@
 import React from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Context } from '../hooks/stateContext';
 import '@styles/pages/Success.scss'
 
 const Success = () => {
+    const {resetCart} = React.useContext(Context)
+    resetCart()
     return(
         <main className='success'>
             <h1 className='success__title'>Gracias por tu compra.</h1>

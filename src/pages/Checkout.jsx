@@ -13,7 +13,7 @@ const Checkout = () => {
         return(
             <section className={(modal ? "darken-bg checkout" : "checkout")}>
                 <h1 className='checkout__title'>Lista de articulos:</h1>
-                <div>
+                <div className='checkout__products'>
                     {
                         (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} />))
                     }
