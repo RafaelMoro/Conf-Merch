@@ -25,6 +25,7 @@
     display: grid;
     justify-items: center;
     grid-template-columns: 1fr 1fr;
+    gap: 1rem;
     padding-bottom: 2rem;
 }
 .checkout__total p {
@@ -35,23 +36,6 @@
 }
 .checkout__total p span {
     font-weight: $bold;
-}
-.checkout__button--pay, .checkout__button--cancel {
-    font-size: 1.3rem;
-    height: 4rem;
-    margin-top: 3rem;
-    padding: 1rem;
-    color: $white;
-    border-radius: 2rem;
-}
-.checkout__button--pay {
-    background-color: $positive;
-}
-.checkout__button--cancel {
-    background-color: $negative;
-}
-.checkout__button--cancel a, .checkout__button--pay a {
-    color: $white;
 }
 @media (min-width: 480px) {
     .checkout--empty h1 {

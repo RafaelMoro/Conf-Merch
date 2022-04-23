@@ -1,3 +1,4 @@
+@import './_variables.scss';
 * {
     box-sizing: border-box;
     margin: 0;
@@ -12,4 +13,21 @@ a {
 }
 button {
     border: none;
+}
+.button--proceed, .button--cancel {
+    width: 14rem;
+    font-size: $small;
+    height: 4rem;
+    margin-top: 3rem;
+    color: $white;
+    border-radius: 2rem;
+}
+.button--proceed {
+    background-color: $positive;
+}
+.button--cancel {
+    background-color: $negative;
+}
+.button--cancel a, .button--proceed a {
+    color: $white;
 }
