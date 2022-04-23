@@ -4,7 +4,8 @@ import {ProductHome} from '@components/ProductHome'
 import { Context } from '../hooks/stateContext';
 
 const Home = () => {
-    const {state: {products}, modal} = React.useContext(Context)
+    const {state: {products}, modal, toggleCart, hideCart} = React.useContext(Context)
+    hideCart && toggleCart()
     return (
         <main className={(modal && "darken-bg")}>
             <Products>

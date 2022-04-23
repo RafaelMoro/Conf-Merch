@@ -4,7 +4,7 @@ import { Context } from '../hooks/stateContext';
 import '@styles/pages/Information.scss'
 
 const Information = () => {
-    const {state: {cart}, addBuyer} = React.useContext(Context)
+    const {state: {cart}, addBuyer, hideCart, toggleCart} = React.useContext(Context)
     const form = React.useRef(null)
     const navigate = useNavigate()
     const location = useLocation()
@@ -26,6 +26,7 @@ const Information = () => {
         navigate('/checkout/payment', {state: {total: location.state}})
     }
     if((cart)&&(cart.length > 0)) {
+        !hideCart && toggleCart()
         return (
             <main className='information'>
                 <h1 className='information__title'>Información de contacto: </h1>

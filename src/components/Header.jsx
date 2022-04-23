@@ -5,7 +5,7 @@ import logo from '@images/logo.png'
 import '@styles/components/Header.scss'
 
 const Header = ({modal}) => {
-    const {state: {cart}, toggleModal, totalCart} = React.useContext(Context)
+    const {state: {cart}, toggleModal, totalCart, hideCart} = React.useContext(Context)
     
     return (
         <header className={(modal ? "header darken-bg" : "header")}>
@@ -15,7 +15,7 @@ const Header = ({modal}) => {
                     Platzi Merch
                  </Link>
             </div>
-            <div className="shopping-cart" onClick={toggleModal}>
+            {!hideCart && <div className="shopping-cart" onClick={toggleModal}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-shopping-cart" width="38" height="38" viewBox="0 0 24 24" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <circle cx="6" cy="19" r="2" />
@@ -24,7 +24,7 @@ const Header = ({modal}) => {
                     <path d="M6 5l14 1l-1 7h-13" />
                 </svg>
                 {(cart)&&(cart.length > 0) && <p className='cart-number'>{totalCart}</p>}
-            </div>
+            </div>}
         </header>
     );
 };
