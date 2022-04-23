@@ -3,9 +3,15 @@
     padding: 0 0.5rem;
 }
 .information__title {
+    padding-top: 3rem;
+    text-align: center;
+    font-size: $medium;
+    font-weight: $regular;
     color: $white;
 }
 fieldset {
+    font-size: $small;
+    font-weight: $regular;
     border: 1px solid $white;
     color: $white;
     margin: 1rem 0;
@@ -20,7 +26,8 @@ fieldset {
     border-radius: 0.4rem;
     border: 1px solid $background-2;
     display: block;
-    font-size: 1.5rem;
+    font-size: $small;
+    font-weight: $thin;
     height: 3.2rem;
     padding: 0.4rem 1.2rem;
 }
@@ -31,7 +38,7 @@ fieldset {
     margin-bottom: 2rem;
 }
 .information--payment p {
-    font-size: 1.5rem;
+    font-size: $medium;
     text-align: center;
     color: $white;
 }
@@ -39,9 +46,20 @@ fieldset {
     font-weight: $bold;
     font-size: 1.7rem;
 }
+@media (min-width: 480px) {
+    .information__title {
+        font-size: $large;
+    }
+}
 @media (min-width: 1024px) {
     .container {
         display: grid;
         grid-template-columns: 70% 30%;
+    }
+    fieldset, .form__input {
+        font-size: $medium;
+    }
+    .information--payment {
+        place-self: center;
     }
 }

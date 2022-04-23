@@ -53,7 +53,7 @@ const Information = () => {
                     </div>
                 </main>
                 <aside className='information--payment'>
-                    <p>Total a pagar: <span>${location.state}</span> </p>
+                    <p>Total a pagar: <span>${location.state} USD</span> </p>
                 </aside>
             </div>
         )

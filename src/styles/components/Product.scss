@@ -27,8 +27,8 @@
 }
 .product__title {
     color: $white;
-    font-size: 1.5rem;
-    font-weight: $bold;
+    font-size: $small;
+    font-weight: $regular;
 }
 .quantity {
     display: flex;
@@ -53,7 +53,15 @@
     font-size: 1.5rem;
     font-weight: $regular;
 }
+.quantity p {
+    font-weight: $thin;
+}
+.product__price {
+    font-size: $small;
+    font-weight: $regular;
+}
 .product__description {
+    font-weight: $thin;
     color: $white;
     margin-top: 1.2rem;
     font-size: 1.5rem;
@@ -71,8 +79,8 @@
     .product {
         justify-self: center;
     }
-    .product__title {
-        font-size: 1.8rem;
+    .product__title, .product__price, .product__description {
+        font-size: $medium;
     }
     .icon-tabler-trash {
         width: 3.8rem;

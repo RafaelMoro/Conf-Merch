@@ -40,8 +40,8 @@ const Payment = () => {
     
     return(
         <main className='payment'>
-            <h1 className='payment__title'>Metodo de pago:</h1>
-            <p className='payment__total'>Total a pagar: <span>${total} usd</span></p>
+            <h1 className='payment__title'>Método de pago:</h1>
+            <p className='payment__total'>Total a pagar: <span>${total} USD</span></p>
             <div className='payment__buttons'>
                 <PayPalScriptProvider options={paypalOptions}>
                     <PayPalButtons style={{ layout: "vertical" }} createOrder={(data, actions) => handleCreateOrder(data, actions)} onApprove={data => handlePaymentSuccess(data)} />
