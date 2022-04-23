@@ -45,6 +45,9 @@
     align-self: start;
 }
 .products--modal {
+    height: 85rem;
+    overflow-y: scroll;
+    overscroll-behavior-y: contain;
     grid-column: 1 / 4;
 }
 .modal__pay-button {
@@ -70,5 +73,10 @@
 @media(min-width: 1200px) {
     .modal, .modal--empty {
         width: 50%;
+    }
+    .products--modal {
+        height: 70rem;
+        overflow-y: scroll;
+        overscroll-behavior-y: contain;
     }
 }
