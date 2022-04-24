@@ -8,6 +8,7 @@
     .products {
         width: 100%;
         display: grid;
+        gap: 4rem;
         justify-content: center;
         grid-template-columns: repeat(auto-fit, minmax(30rem, 35rem));
     }

@@ -13,7 +13,7 @@ export default {
       {
         'id': '3',
         'image': 'https://arepa.s3.amazonaws.com/mug.png',
-        'title': 'Mug',
+        'title': 'Taza',
         'price': 10,
         'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       },
@@ -41,7 +41,7 @@ export default {
       {
         'id': '7',
         'image': 'https://arepa.s3.amazonaws.com/hoodie.png',
-        'title': 'Hoodie',
+        'title': 'Sudadera',
         'price': 35,
         'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       },

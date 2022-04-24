@@ -15,7 +15,6 @@ const Payment = () => {
         intent: 'capture',
         currency: 'USD'
     }
-
     const handleCreateOrder = (data, actions) => {
         return actions.order.create({
             purchase_units: [
