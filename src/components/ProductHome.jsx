@@ -8,6 +8,13 @@ const ProductHome = ({product}) => {
     React.useEffect(() => {
         fixHeader()
     }, [])
+    const handleBuyProduct = (event) => {
+        const id = event.target.id
+        const button = document.querySelector(`#${id}`)
+        button.classList.add('rubberBand', 'animated')
+        addToCart(product)
+        setTimeout(() => button.classList.remove('rubberBand', 'animated'), 700)
+    }
     return(
         <article className="product">
             <picture className='product__image-box'>
@@ -18,7 +25,7 @@ const ProductHome = ({product}) => {
                 <p className='product__price'>${product.price}</p>
             </div>
             <p className='product__description'>{product.description}</p>
-            <button className='product__buy-button' onClick={() => addToCart(product)}>Comprar</button>
+            <button id={`product-${product.id}`} className='product__buy-button' onClick={handleBuyProduct}>Comprar</button>
         </article>
     )
 }
