@@ -7,7 +7,7 @@ import '@styles/components/Header.scss'
 const Header = ({modal}) => {
     const {state: {cart}, toggleModal, totalCart, hideCart} = React.useContext(Context)
     return (
-        <header className={(modal ? "header darken-bg" : "header")}>
+        <header id='header' className={(modal ? "header darken-bg animated" : "header animated")}>
             <div className='title' >
                 <Link to="/">
                     <img src={logo} alt="logo" />
