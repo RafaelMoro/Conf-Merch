@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { Context } from '../hooks/stateContext';
+import {SearchBar} from '@components/SearchBar'
 import logo from '@images/logo.png'
 import '@styles/components/Header.scss'
 
@@ -13,6 +14,9 @@ const Header = ({modal}) => {
                     <img src={logo} alt="logo" />
                     Platzi Merch
                  </Link>
+            </div>
+            <div className="search-bar__box">
+                <SearchBar />
             </div>
             {!hideCart && <div className="shopping-cart" onClick={toggleModal}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-shopping-cart" width="38" height="38" viewBox="0 0 24 24" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
