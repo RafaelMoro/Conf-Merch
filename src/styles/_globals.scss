@@ -14,6 +14,24 @@ a {
 button {
     border: none;
 }
+.input {
+    width: 100%;
+    max-width: 60rem;
+    height: 3.2rem;
+    padding: 1.5rem 1.5rem;
+    margin-bottom: 1rem;
+    justify-self: center;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 1px solid $primary-color;
+    color: $white;
+    font-size: $small;
+    font-weight: $thin;
+}
+.input:focus-visible {
+    border: none;
+    outline: solid $primary-color;
+}
 .button--proceed, .button--cancel {
     width: 14rem;
     font-size: $small;
