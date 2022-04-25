@@ -5,12 +5,14 @@ const Context = React.createContext()
 
 const StateContext = (props) => {
     const [state, setState] = React.useState({})
+    const [filteredProducts, setFilteredProducts] = React.useState([])
     const [modal, setModal] = React.useState(false)
     const [totalCart, setTotalCart] = React.useState(0)
     const [hideCart, setHideCart] = React.useState(false)
 
     React.useEffect(() => {
         setState(initialState)
+        setFilteredProducts(initialState.products)
     }, [])
 
     React.useEffect(() => {
@@ -128,7 +130,9 @@ const StateContext = (props) => {
             addNewOrder,
             hideCart,
             toggleCart,
-            resetCart
+            resetCart,
+            filteredProducts,
+            setFilteredProducts
         }}>
             {props.children}
         </Context.Provider>
