@@ -18,7 +18,7 @@ const SearchBar = () => {
         }
     }
     return(
-        <input className='search-bar' type="text" placeholder='Buscar...' onChange={filterProducts} />
+        <input className='search-bar observer' type="text" placeholder='Buscar...' onChange={filterProducts} />
     )
 }
 export {SearchBar}
