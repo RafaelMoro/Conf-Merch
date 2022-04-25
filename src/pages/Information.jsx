@@ -31,16 +31,16 @@ const Information = () => {
             <main className='information'>
                 <h1 className='information__title'>Información de contacto: </h1>
                 <form className='form' ref={form}>
-                    <input className='form__input' type="text" placeholder="Nombre Completo" name="name" />
-                    <input className='form__input' type="email" placeholder="Correo electrónico" name="email" />
-                    <input className='form__input' type="number" placeholder="Teléfono" name="phone" />
+                    <input className='input' type="text" placeholder="Nombre Completo" name="name" />
+                    <input className='input' type="email" placeholder="Correo electrónico" name="email" />
+                    <input className='input' type="number" placeholder="Teléfono" name="phone" />
                     
-                    <input className='form__input' type="text" placeholder="Dirección" name="address" />
-                    <input className='form__input' type="text" placeholder="Apartamento" name="apto" />
-                    <input className='form__input' type="text" placeholder="Ciudad" name="city" />
-                    <input className='form__input' type="text" placeholder="País" name="country" />
-                    <input className='form__input' type="text" placeholder="Estado" name="state" />
-                    <input className='form__input' type="text" placeholder="Código Postal" name="cp" />
+                    <input className='input' type="text" placeholder="Dirección" name="address" />
+                    <input className='input' type="text" placeholder="Apartamento" name="apto" />
+                    <input className='input' type="text" placeholder="Ciudad" name="city" />
+                    <input className='input' type="text" placeholder="País" name="country" />
+                    <input className='input' type="text" placeholder="Estado" name="state" />
+                    <input className='input' type="text" placeholder="Código Postal" name="cp" />
                 </form>
                 <aside className='information--payment'>
                     <p>Total a pagar: <span>${location.state} USD</span> </p>
