@@ -1,5 +1,5 @@
 import React from 'react';
-import lostAstronaut from '@images/astronauts.png'
+import lostAstronaut from '@images/astronauts.webp'
 import '@styles/pages/NotFound.scss'
 import '@styles/_animations.scss'
 
