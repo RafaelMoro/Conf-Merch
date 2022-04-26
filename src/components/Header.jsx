@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { Context } from '../hooks/stateContext';
-import logo from '@images/logo.png'
+import logo from '@images/logo.webp'
 import '@styles/components/Header.scss'
 
 const Header = ({modal}) => {

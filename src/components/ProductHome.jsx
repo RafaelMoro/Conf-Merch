@@ -4,7 +4,7 @@ import { Context } from '../hooks/stateContext';
 import { fixHeader } from '../utils/fixHeader';
 
 const ProductHome = ({product}) => {
-    const {addToCart} = React.useContext(Context)
+    const {addToCart, modal} = React.useContext(Context)
     React.useEffect(() => {
         fixHeader()
     }, [])
@@ -25,7 +25,7 @@ const ProductHome = ({product}) => {
                 <p className='product__price'>${product.price}</p>
             </div>
             <p className='product__description'>{product.description}</p>
-            <button id={`product-${product.id}`} className='product__buy-button' onClick={handleBuyProduct}>Comprar</button>
+            <button id={`product-${product.id}`} className='product__buy-button' onClick={handleBuyProduct} disabled={modal}>Comprar</button>
         </article>
     )
 }
