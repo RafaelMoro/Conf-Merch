@@ -4,7 +4,7 @@ Platzi Merch is a fictional front end of an e-commerce of Platzi.
 
 ## Usage
 
-The website starts with a Home page showing the products where you can add them to the cart. You may see how many items you've added to the cart on the icon on the header.
+The website starts with a Home page showing the products where you can add them to the cart. You may see how many items you've added to the cart on the icon on the header on the top right part of the screen.
 If you click the shopping cart icon, a modal is shown with the quantity of each products you decided to buy.
 You can delete any product from the cart, add more or put a specific quantity.
 
@@ -27,14 +27,14 @@ Here are all the technologies, libraries used on this project:
 | Leaflet and React Leaflet |  Map rendering |
 | AniCollection | CSS Animations |
 
-In React, I used some hooks such as useState, useEffect, useRef for the form handlement, useContext for the global use of the state. 
+In React, I used some hooks such as useState, useEffect, useRef for the form handlement, useContext for the global use of the state. useNavigate to send the user to the next screen. useLocation to pass any props between pages.
 
 The website was launched into production with Netlify. This is the link: https://vocal-eclair-4a8151.netlify.app
 
 
 ## Installation
 
-To install it, use:
+To install the dependencies after cloning the proyect, use:
 
 ```bash
 npm install
@@ -50,4 +50,4 @@ To launch it on production mode:
 npm run build
 ```
 
-You may use the file ".env-example" to know what environment variables the project uses. At the time being, only the client-id is needed to use de Paypal SDK API.
+At the time being, the only environment variable is the "client-id" where is needed to use the Paypal SDK API.
