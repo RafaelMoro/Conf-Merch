@@ -2,7 +2,7 @@ import React from 'react';
 import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
 
-const Product = ({product}) => {
+const Product = ({product, toggleQuantityEmpty, quantityEmpty}) => {
     const {modifyQuantity, deleteProductFromCart} = React.useContext(Context)
     const [fillQuantity, setFillQuantity] = React.useState(false)
 
@@ -10,7 +10,9 @@ const Product = ({product}) => {
         const newQuantity = event.target.value
         if(newQuantity == '') {
             setFillQuantity(!fillQuantity)
+            !quantityEmpty && toggleQuantityEmpty()
         }else {
+            quantityEmpty && toggleQuantityEmpty()
             const quantityMessage = document.querySelector('.quantity__message')
             if(quantityMessage) {
                 quantityMessage.classList.remove('message-fade-in')

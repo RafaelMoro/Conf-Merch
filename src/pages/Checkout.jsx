@@ -5,7 +5,7 @@ import { Context } from '../hooks/stateContext';
 import '@styles/pages/Checkout.scss'
 
 const Checkout = () => {
-    const {state: {cart}, modal} = React.useContext(Context)
+    const {state: {cart}, modal, quantityEmpty, toggleQuantityEmpty} = React.useContext(Context)
 
     if((cart)&&(cart.length > 0)) {
         const total = cart.reduce((acc, product) => (acc + (product.price * product.quantity)), 0)
@@ -15,13 +15,13 @@ const Checkout = () => {
                 <h1 className='checkout__title'>Lista de articulos:</h1>
                 <div className='checkout__products'>
                     {
-                        (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} />))
+                        (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} quantityEmpty={quantityEmpty} toggleQuantityEmpty={toggleQuantityEmpty} />))
                     }
                 </div>
                 <div className='checkout__total'>
                     <p>Precio total: <span>${total} USD</span></p>
                     <button className='button--cancel'><Link to="/">Continuar comprando</Link></button>
-                    <button className='button--proceed'><Link to="/checkout/information" state={total}>Finalizar Pedido</Link></button>
+                    <Link to="/checkout/information" state={total}><button className='button--proceed'>Finalizar Pedido</button></Link>
                 </div>
             </section>
         )

@@ -9,6 +9,7 @@ const StateContext = (props) => {
     const [modal, setModal] = React.useState(false)
     const [totalCart, setTotalCart] = React.useState(0)
     const [hideCart, setHideCart] = React.useState(false)
+    const [quantityEmpty, setQuantityEmpty] = React.useState(false)
 
     React.useEffect(() => {
         setState(initialState)
@@ -117,6 +118,7 @@ const StateContext = (props) => {
     }
     const toggleModal = () => setModal(!modal)
     const toggleCart = () => setHideCart(!hideCart)
+    const toggleQuantityEmpty = () => setQuantityEmpty(!quantityEmpty)
     return(
         <Context.Provider value={{
             state,
@@ -132,7 +134,9 @@ const StateContext = (props) => {
             toggleCart,
             resetCart,
             filteredProducts,
-            setFilteredProducts
+            setFilteredProducts,
+            toggleQuantityEmpty,
+            quantityEmpty,
         }}>
             {props.children}
         </Context.Provider>
