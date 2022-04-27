@@ -1,3 +1,19 @@
+@keyframes message-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes message-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 /*base code*/
 .animated {
     -webkit-animation-duration: 1s;

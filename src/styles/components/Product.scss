@@ -34,11 +34,6 @@
     display: flex;
     gap: 1rem;
 }
-.product__trash-price {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-}
 .quantity__input {
     min-width: 7rem;
     width: 40%;
@@ -48,14 +43,43 @@
     border-radius: 2rem;
     padding: 0.5rem 0;
 }
+.quantity p {
+    font-weight: $thin;
+}
+.quantity__message {
+    color: $negative;
+    border: 1px solid $white;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-weight: $bold;
+    font-size: $small;
+}
+.message-fade-in {
+    animation-name: message-fade-in;
+    animation-duration: 1s;
+}
+.message--fade-out {
+    animation-name: message-fade-out;
+    animation-duration: 1s;
+}
+.input--error {
+    border: 1px solid $negative;
+}
+.input--error:focus-visible {
+    outline:1px solid $negative;
+}
+.product__trash-price {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .product__price, .quantity p {
     color: $white;
     font-size: 1.5rem;
     font-weight: $regular;
 }
-.quantity p {
-    font-weight: $thin;
-}
+
 .product__price {
     font-size: $small;
     font-weight: $regular;

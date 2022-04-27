@@ -3,13 +3,24 @@ import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
 
 const Product = ({product}) => {
-    const {modifyQuantity, deleteProductFromCart} = React.useContext(Context)
+    const {modifyQuantity, deleteProductFromCart, toggleQuantityEmpty, quantityEmpty} = React.useContext(Context)
+    //This state is to show the user to fill a quantity but only the product where the input is empty
+    const [fillQuantity, setFillQuantity] = React.useState(false)
 
     const handlerQuantity = (event) => {
         const newQuantity = event.target.value
         if(newQuantity == '') {
-            alert('ingrese una cantidad por favor')
+            !quantityEmpty && toggleQuantityEmpty()
+            setFillQuantity(true)
         }else {
+            const quantityMessage = document.querySelector('.quantity__message')
+            if(quantityMessage) {
+                //Put the fade out animation to the message
+                quantityMessage.classList.remove('message-fade-in')
+                quantityMessage.classList.add('message--fade-out')
+                setTimeout(() => setFillQuantity(false), 900)
+            }
+            quantityEmpty && toggleQuantityEmpty()
             modifyQuantity(newQuantity, product)
         }
     }
@@ -22,8 +33,9 @@ const Product = ({product}) => {
                 <h3 className='product__title'>{product.title}</h3>
                 <div className='quantity'>
                     <p>Cantidad: </p>
-                    <input onChange={handlerQuantity} className='quantity__input' type='number' defaultValue={product.quantity} min='0' />
+                    <input onChange={handlerQuantity} className={(fillQuantity ? "quantity__input input--error" : "quantity__input")} type='number' defaultValue={product.quantity} min='0' />
                 </div>
+                {fillQuantity && <p className='quantity__message message-fade-in'>Por favor, ingrese una cantidad</p>}
                 <div className='product__trash-price'>
                     <svg onClick={() => deleteProductFromCart(product)} xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="32" height="32" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff2825" fill="none" strokeLinecap="round" strokeLinejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>

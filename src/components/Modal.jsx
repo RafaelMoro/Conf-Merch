@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {Product} from '@components/Product'
+import { Context } from '../hooks/stateContext';
 import '@styles/components/Modal.scss'
 
 const Modal = ({cart, toggleModal}) => {
-
+    const {quantityEmpty} = React.useContext(Context)
     const closeModal = () => {
         const divModal = document.querySelector('#modal')
         divModal.classList.remove('fadeInRight')
@@ -43,7 +44,7 @@ const Modal = ({cart, toggleModal}) => {
                 <div className='products--modal'>
                     {cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} />))}
                 </div>
-                <button className='modal__pay-button' onClick={closeModal}><Link to="/checkout">Proceder al pago</Link></button>
+                <Link className='modal__pay-anchor' to="/checkout"><button className='modal__pay-button' disabled={quantityEmpty} onClick={closeModal}>Proceder al pago</button></Link>
             </div>
         )
     }

@@ -6,8 +6,7 @@ import { Context } from '../hooks/stateContext'
 import '@styles/pages/Home.scss'
 
 const Home = () => {
-    const {modal, toggleCart, hideCart, filteredProducts} = React.useContext(Context)
-    hideCart && toggleCart()
+    const {modal, filteredProducts} = React.useContext(Context)
     return (
         <main className={(modal ? "home darken-bg" : "home")}>
             <SearchBar />

@@ -1,13 +1,12 @@
 import React from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Context } from '../hooks/stateContext';
 import '@styles/pages/Information.scss'
 
 const Information = () => {
-    const {state: {cart}, addBuyer, hideCart, toggleCart} = React.useContext(Context)
+    const {state: {cart, totalPayment}, addBuyer} = React.useContext(Context)
     const form = React.useRef(null)
     const navigate = useNavigate()
-    const location = useLocation()
 
     const handleSubmit = () => {
         const formData = new FormData(form.current)
@@ -23,10 +22,9 @@ const Information = () => {
             'phone': formData.get('phone'),
         }
         addBuyer(buyer)
-        navigate('/checkout/payment', {state: {total: location.state}})
+        navigate('/checkout/payment')
     }
     if((cart)&&(cart.length > 0)) {
-        !hideCart && toggleCart()
         return (
             <main className='information'>
                 <h1 className='information__title'>Información de contacto: </h1>
@@ -43,7 +41,7 @@ const Information = () => {
                     <input className='input' type="text" placeholder="Código Postal" name="cp" />
                 </form>
                 <aside className='information--payment'>
-                    <p>Total a pagar: <span>${location.state} USD</span> </p>
+                    <p>Total a pagar: <span>${totalPayment} USD</span> </p>
                 </aside>
                 <div className='information__buttons'>
                     <button className='button--cancel'><Link to="/checkout">Regresar</Link></button>

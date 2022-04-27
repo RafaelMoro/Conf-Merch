@@ -7,22 +7,30 @@ const StateContext = (props) => {
     const [state, setState] = React.useState({})
     const [filteredProducts, setFilteredProducts] = React.useState([])
     const [modal, setModal] = React.useState(false)
-    const [totalCart, setTotalCart] = React.useState(0)
-    const [hideCart, setHideCart] = React.useState(false)
+    //This state is to lock the proceed or pay button on Modal and Checkout
+    const [quantityEmpty, setQuantityEmpty] = React.useState(false)
 
     React.useEffect(() => {
-        setState(initialState)
+        setState({
+            ...initialState,
+            totalCartItems: 0,
+            totalPayment: 0
+        })
         setFilteredProducts(initialState.products)
     }, [])
 
     React.useEffect(() => {
         const {cart} = state
         if(cart) {
-            const totalQuantity = cart.reduce((acc, product) => acc + parseInt(product.quantity), 0)
-            setTotalCart(totalQuantity)
+            const totalQuantityItems = cart.reduce((acc, product) => acc + parseInt(product.quantity), 0)
+            const totalPay = cart.reduce((acc, product) => (acc + (product.price * product.quantity)), 0)
+            setState({
+                ...state,
+                totalCartItems: totalQuantityItems,
+                totalPayment: totalPay
+            })
         }
     }, [state.cart])
-
     const addToCart = (item) => {
         const {cart} = state
         const newCart = [...cart]
@@ -112,27 +120,28 @@ const StateContext = (props) => {
     const resetCart = () => {
         setState({
             ...state,
-            cart: []
+            cart: [],
+            totalCartItems: 0,
+            totalPayment: 0
         })
     }
     const toggleModal = () => setModal(!modal)
-    const toggleCart = () => setHideCart(!hideCart)
+    const toggleQuantityEmpty = () => setQuantityEmpty(!quantityEmpty)
     return(
         <Context.Provider value={{
             state,
             addToCart,
             toggleModal,
             modal,
-            totalCart,
             modifyQuantity,
             deleteProductFromCart,
             addBuyer,
             addNewOrder,
-            hideCart,
-            toggleCart,
             resetCart,
             filteredProducts,
-            setFilteredProducts
+            setFilteredProducts,
+            toggleQuantityEmpty,
+            quantityEmpty,
         }}>
             {props.children}
         </Context.Provider>
