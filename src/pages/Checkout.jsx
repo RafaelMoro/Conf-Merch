@@ -5,23 +5,21 @@ import { Context } from '../hooks/stateContext';
 import '@styles/pages/Checkout.scss'
 
 const Checkout = () => {
-    const {state: {cart}, modal, quantityEmpty, toggleQuantityEmpty} = React.useContext(Context)
+    const {state: {cart, totalPayment}, modal, quantityEmpty} = React.useContext(Context)
 
     if((cart)&&(cart.length > 0)) {
-        const total = cart.reduce((acc, product) => (acc + (product.price * product.quantity)), 0)
-
         return(
             <section className={(modal ? "darken-bg checkout" : "checkout")}>
                 <h1 className='checkout__title'>Lista de articulos:</h1>
                 <div className='checkout__products'>
                     {
-                        (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} quantityEmpty={quantityEmpty} toggleQuantityEmpty={toggleQuantityEmpty} />))
+                        (cart.length > 0) && cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} />))
                     }
                 </div>
                 <div className='checkout__total'>
-                    <p>Precio total: <span>${total} USD</span></p>
-                    <button className='button--cancel'><Link to="/">Continuar comprando</Link></button>
-                    <Link to="/checkout/information" state={total}><button className='button--proceed'>Finalizar Pedido</button></Link>
+                    <p>Precio total: <span>${totalPayment} USD</span></p>
+                    <Link to="/"><button className='button--cancel'>Continuar comprando</button></Link>
+                    <Link to="/checkout/information"><button className='button--proceed' disabled={quantityEmpty}>Finalizar Pedido</button></Link>
                 </div>
             </section>
         )

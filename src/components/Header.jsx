@@ -1,11 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Context } from '../hooks/stateContext';
 import logo from '@images/logo.webp'
 import '@styles/components/Header.scss'
 
 const Header = ({modal}) => {
-    const {state: {cart}, toggleModal, totalCart, hideCart} = React.useContext(Context)
+    const {state: {cart, totalCartItems}, toggleModal} = React.useContext(Context)
+    const [hideCart, setHideCart] = React.useState(false)
+    const location = useLocation()
+
+    React.useEffect(() => {
+        //Depending of the pathname, the shopping cart will be hidden in any route with exception of "/" and "/checkout"
+        if((location.pathname === '/') || (location.pathname === '/checkout')) {
+            setHideCart(false)
+        }else {
+            setHideCart(true)
+        }
+    }, [location.pathname])
+
     return (
         <header id='header' className={(modal ? "header darken-bg animated" : "header animated")}>
             <div className='title' >
@@ -24,7 +36,7 @@ const Header = ({modal}) => {
                     <path d="M17 17h-11v-14h-2" />
                     <path d="M6 5l14 1l-1 7h-13" />
                 </svg>
-                {(cart)&&(cart.length > 0) && <p className='cart-number'>{totalCart}</p>}
+                {(cart)&&(cart.length > 0) && <p className='cart-number'>{totalCartItems}</p>}
             </div>}
         </header>
     );
