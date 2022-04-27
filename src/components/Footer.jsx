@@ -4,10 +4,10 @@ const Footer = ({modal}) => {
     return (
         <footer className={(modal ? "footer darken-bg" : "footer")}>
             <div className='left-title'>
-                <p>Platzi Conference Merch</p>
+                <p>Platzi Merch</p>
             </div>
             <div className='right-title'>
-                <p>Todos los izquierdos reservados</p>
+                <p>Todos los derechos reservados</p>
             </div>
         </footer>
     );

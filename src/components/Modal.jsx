@@ -43,7 +43,7 @@ const Modal = ({cart, toggleModal}) => {
                 <div className='products--modal'>
                     {cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} />))}
                 </div>
-                <button className='modal__pay-button' onClick={closeModal}><Link to="/checkout">Proceder al pago</Link></button>
+                <Link className='modal__pay-anchor' to="/checkout"><button className='modal__pay-button' onClick={closeModal}>Proceder al pago</button></Link>
             </div>
         )
     }
