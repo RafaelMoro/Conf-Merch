@@ -7,6 +7,7 @@ const StateContext = (props) => {
     const [state, setState] = React.useState({})
     const [filteredProducts, setFilteredProducts] = React.useState([])
     const [modal, setModal] = React.useState(false)
+    //This state is to lock the proceed or pay button on Modal and Checkout
     const [quantityEmpty, setQuantityEmpty] = React.useState(false)
 
     React.useEffect(() => {
