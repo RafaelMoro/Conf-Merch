@@ -9,9 +9,11 @@
 .product--modal {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding: 0 1.5rem;
 }
 .product__image-box {
-    overflow: hidden;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
 }
 .product__image {
     width: 100%;
