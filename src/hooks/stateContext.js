@@ -4,8 +4,10 @@ import initialState from '../initialState'
 const Context = React.createContext()
 
 const StateContext = (props) => {
+    const API = process.env.API
     const [state, setState] = React.useState({})
     const [filteredProducts, setFilteredProducts] = React.useState([])
+    const [example, setExample] = React.useState([])
     const [modal, setModal] = React.useState(false)
     //This state is to lock the proceed or pay button on Modal and Checkout
     const [quantityEmpty, setQuantityEmpty] = React.useState(false)
@@ -17,7 +19,14 @@ const StateContext = (props) => {
             totalPayment: 0
         })
         setFilteredProducts(initialState.products)
+
+        fetch(API)
+            .then(response => response.json())
+            .then(data => setExample(data))
+            .catch(error => console.error('Fetching Error', error))
     }, [])
+
+    React.useEffect(() => console.log(example), [example])
 
     React.useEffect(() => {
         const {cart} = state
