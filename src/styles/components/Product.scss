@@ -10,10 +10,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+.product__image-box {
+    overflow: hidden;
+}
 .product__image {
     width: 100%;
-    height: 20rem;
     object-fit: contain;
+    border-radius: 1rem;
 }
 .title-price {
     display: flex;

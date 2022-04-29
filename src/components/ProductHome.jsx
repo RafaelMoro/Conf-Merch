@@ -18,7 +18,7 @@ const ProductHome = ({product}) => {
     return(
         <article className="product">
             <picture className='product__image-box'>
-                <img className="product__image" src={product.image} alt={product.name} />
+                <img className="product__image" src={product.images[0]} alt={product.name} />
             </picture>
             <div className="title-price">
                 <h3 className='product__title'>{product.title}</h3>
