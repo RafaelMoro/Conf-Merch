@@ -7,17 +7,15 @@ const SingleProduct = () => {
     const [product, setProduct] = React.useState({})
     const API = process.env.API
 
-    
-
     React.useEffect(() => {
-        // fetch(`${API}/${id}`)
-        //     .then(response => response.json())
-        //     .then(data => setProduct(data))
-        //     .catch(err => console.error('Fetching Error', err))
         async function fetchProduct() {
-            const fetchData = await fetch(`${API}/${id}`)
-            const productFetched = await fetchData.json()
-            setProduct(productFetched)
+            try {
+                const fetchData = await fetch(`${API}/${id}`)
+                const productFetched = await fetchData.json()
+                setProduct(productFetched)
+            }catch(err) {
+                console.error('Fetching Single product Error', err)
+            }
         }
         fetchProduct()
     }, [])
