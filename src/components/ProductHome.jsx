@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
 import { fixHeader } from '../utils/fixHeader';
@@ -6,6 +7,7 @@ import { registerImageObserver } from '../utils/lazyImages'
 
 const ProductHome = ({product}) => {
     const {addToCart, modal} = React.useContext(Context)
+    const navigate = useNavigate()
     const handleBuyProduct = (event) => {
         const id = event.target.id
         const button = document.querySelector(`#${id}`)
@@ -30,7 +32,7 @@ const ProductHome = ({product}) => {
                 <img id={`product${product.numberProduct}`} className="product__image" alt={product.name} />
             </picture>
             <div className="title-price">
-                <h3 className='product__title'>{product.title}</h3>
+                <h3 className='product__title' onClick={() => navigate(`/product/:${product.id}`, {state: product.id})}>{product.title}</h3>
                 <p className='product__price'>${product.price}</p>
             </div>
             <p className='product__description'>{product.description}</p>
