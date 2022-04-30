@@ -12,7 +12,13 @@ const Home = () => {
             <SearchBar />
             <Products>
                 {
-                   filteredProducts && filteredProducts.map(product => (<ProductHome product={product} key={product.id} />) )
+                   filteredProducts && filteredProducts.map((product, index) => {
+                       const newProduct = {
+                           ...product,
+                           numberProduct: index + 1
+                       }
+                   return <ProductHome product={newProduct} key={product.id} />
+                } )
                 }
             </Products>
         </main>

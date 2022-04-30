@@ -17,9 +17,26 @@ const Header = ({modal}) => {
             setHideCart(true)
         }
     }, [location.pathname])
+    
+    React.useEffect(() => {
+        const header = document.querySelector('.header')
+        //The animations of header-fixed will only happen in the pathname "/"
+        if(location.pathname === '/') {
+            //If modal is active, add the darken-bg CSS class, if not, remove it
+            if(modal) {
+                header.classList.add('darken-bg')
+            }else {
+                if(header.className.includes('darken-bg')) {
+                    header.classList.remove('darken-bg')
+                }
+            }
+        }else {
+           header.className = "header animated"
+        }
+    }, [modal])
 
     return (
-        <header id='header' className={(modal ? "header darken-bg animated" : "header animated")}>
+        <header id='header' className="header animated">
             <div className='title' >
                 <Link to="/">
                     <img src={logo} alt="logo" />

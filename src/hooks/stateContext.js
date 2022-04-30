@@ -1,22 +1,33 @@
 import React from 'react'
-import initialState from '../initialState'
 
 const Context = React.createContext()
 
 const StateContext = (props) => {
-    const [state, setState] = React.useState({})
+    const API = process.env.API
+    const [state, setState] = React.useState({
+        cart: [],
+        buyer: [],
+        orders: [],
+        products: [],
+        totalCartItems: 0,
+        totalPayment: 0
+    })
     const [filteredProducts, setFilteredProducts] = React.useState([])
     const [modal, setModal] = React.useState(false)
     //This state is to lock the proceed or pay button on Modal and Checkout
     const [quantityEmpty, setQuantityEmpty] = React.useState(false)
 
     React.useEffect(() => {
-        setState({
-            ...initialState,
-            totalCartItems: 0,
-            totalPayment: 0
-        })
-        setFilteredProducts(initialState.products)
+        fetch(`${API}?offset=10&limit=30`)
+            .then(response => response.json())
+            .then(data => {
+                setState({
+                    ...state,
+                    products: data
+                })
+                setFilteredProducts(data)
+            })
+            .catch(error => console.error('Fetching Error', error))
     }, [])
 
     React.useEffect(() => {
@@ -31,6 +42,7 @@ const StateContext = (props) => {
             })
         }
     }, [state.cart])
+
     const addToCart = (item) => {
         const {cart} = state
         const newCart = [...cart]
@@ -69,6 +81,7 @@ const StateContext = (props) => {
             }
         }
     }
+
     const addBuyer = (person) => {
         const {buyer} = state
         const newBuyer = [...buyer]
@@ -78,12 +91,14 @@ const StateContext = (props) => {
             buyer: newBuyer
         })
     }
+
     const addNewOrder = (order) => {
         setState({
             ...state,
             orders: order
         })
     }
+
     const modifyQuantity = (quantity, item) => {
         const quantityNumber = parseInt(quantity)
         const {cart} = state
@@ -117,6 +132,7 @@ const StateContext = (props) => {
             })
         }
     }
+
     const resetCart = () => {
         setState({
             ...state,
@@ -125,8 +141,10 @@ const StateContext = (props) => {
             totalPayment: 0
         })
     }
+
     const toggleModal = () => setModal(!modal)
     const toggleQuantityEmpty = () => setQuantityEmpty(!quantityEmpty)
+
     return(
         <Context.Provider value={{
             state,
