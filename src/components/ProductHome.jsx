@@ -2,12 +2,10 @@ import React from 'react'
 import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
 import { fixHeader } from '../utils/fixHeader';
+import { registerImageObserver } from '../utils/lazyImages'
 
 const ProductHome = ({product}) => {
     const {addToCart, modal} = React.useContext(Context)
-    React.useEffect(() => {
-        fixHeader()
-    }, [])
     const handleBuyProduct = (event) => {
         const id = event.target.id
         const button = document.querySelector(`#${id}`)
@@ -15,10 +13,21 @@ const ProductHome = ({product}) => {
         addToCart(product)
         setTimeout(() => button.classList.remove('rubberBand', 'animated'), 700)
     }
+
+    const lazyLoadingImages = () => {
+        const element = document.querySelector(`#product${product.numberProduct}`)
+        element.dataset.src = product.images[0]
+        registerImageObserver(element)
+    }
+    React.useEffect(() => {
+        fixHeader()
+        lazyLoadingImages()
+    }, [])
+
     return(
         <article className="product">
             <picture className='product__image-box'>
-                <img className="product__image" src={product.images[0]} alt={product.name} />
+                <img id={`product${product.numberProduct}`} className="product__image" alt={product.name} />
             </picture>
             <div className="title-price">
                 <h3 className='product__title'>{product.title}</h3>
