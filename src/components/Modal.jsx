@@ -5,7 +5,7 @@ import { Context } from '../hooks/stateContext';
 import { unFixHeader } from '@utils/fixHeader'
 import '@styles/components/Modal.scss'
 
-const Modal = ({cart, toggleModal, modal}) => {
+const Modal = ({cart, toggleModal}) => {
     const {quantityEmpty} = React.useContext(Context)
     const closeModal = () => {
         const divModal = document.querySelector('#modal')
@@ -24,7 +24,7 @@ const Modal = ({cart, toggleModal, modal}) => {
     }
     const goCheckout = () => {
         const searchInput = document.querySelector('.observer')
-        unFixHeader(searchInput)
+        searchInput && unFixHeader(searchInput)
         closeModal()
     }
     if(cart.length < 1) {

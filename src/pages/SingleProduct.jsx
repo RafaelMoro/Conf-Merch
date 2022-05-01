@@ -46,7 +46,7 @@ const SingleProduct = () => {
     }, [])
     if(product) {
         return(
-            <main className='container__single-product'>
+            <main className={(modal ? "container__single-product darken-bg" : "container__single-product")}>
                 <div className="single-product">
                     <div className='single-product__category'>
                         <h3>Category: </h3>
