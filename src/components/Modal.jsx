@@ -21,8 +21,6 @@ const Modal = ({cart, toggleModal, modal}) => {
             }
             toggleModal()
         }, 500)
-
-        
     }
     const goCheckout = () => {
         const searchInput = document.querySelector('.observer')
