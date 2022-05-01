@@ -5,14 +5,24 @@ import { Context } from '../hooks/stateContext';
 import { unFixHeader } from '../utils/fixHeader'
 import '@styles/components/Modal.scss'
 
-const Modal = ({cart, toggleModal}) => {
+const Modal = ({cart, toggleModal, modal}) => {
     const {quantityEmpty} = React.useContext(Context)
     const closeModal = () => {
         const divModal = document.querySelector('#modal')
+        const header = document.querySelector('.header')
+
         divModal.classList.remove('fadeInRight')
         divModal.classList.add('fadeOutRight')
+        setTimeout(() => {
+            if(header.className.includes('darken-bg--header')) {
+                header.classList.remove('darken-bg--header')
+            }else if(header.className.includes('darken-bg')) {
+                header.classList.remove('darken-bg')
+            }
+            toggleModal()
+        }, 500)
 
-        setTimeout(() => toggleModal(), 500)
+        
     }
     const goCheckout = () => {
         const searchInput = document.querySelector('.observer')

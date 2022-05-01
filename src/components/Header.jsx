@@ -4,11 +4,20 @@ import { Context } from '../hooks/stateContext';
 import logo from '@images/logo.webp'
 import '@styles/components/Header.scss'
 
-const Header = ({modal}) => {
+const Header = () => {
     const {state: {cart, totalCartItems}, toggleModal} = React.useContext(Context)
     const [hideCart, setHideCart] = React.useState(false)
     const location = useLocation()
 
+    const handleToggleModal = () => {
+        const header = document.querySelector('.header')
+        if(header.className.includes('header-fixed')) {
+            header.classList.add('darken-bg--header')
+        }else {
+            header.classList.add('darken-bg')
+        }
+        toggleModal()
+    }
     React.useEffect(() => {
         //Depending of the pathname, the shopping cart will be hidden in any route with exception of "/" and "/checkout"
          if((location.pathname === '/') || (location.pathname === '/checkout')){
@@ -21,21 +30,6 @@ const Header = ({modal}) => {
              }
          }
     }, [location.pathname])
-    
-    React.useEffect(() => {
-        const header = document.querySelector('.header')
-        //The animations of header-fixed will only happen in the pathname "/"
-        if(location.pathname === '/') {
-            //If modal is active, add the darken-bg CSS class, if not, remove it
-            if(modal) {
-                header.classList.add('darken-bg--header')
-            }else {
-                if(header.className.includes('darken-bg--header')) {
-                    header.classList.remove('darken-bg--header')
-                }
-            }
-        }
-    }, [modal])
 
     return (
         <header id='header' className="header animated">
@@ -47,7 +41,7 @@ const Header = ({modal}) => {
             </div>
             <div className="search-bar__box">
             </div>
-            {!hideCart && <div className="shopping-cart" onClick={toggleModal}>
+            {!hideCart && <div className="shopping-cart" onClick={handleToggleModal}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-shopping-cart" width="38" height="38" viewBox="0 0 24 24" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <circle cx="6" cy="19" r="2" />
