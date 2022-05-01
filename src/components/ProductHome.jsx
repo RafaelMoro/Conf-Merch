@@ -21,7 +21,11 @@ const ProductHome = ({product}) => {
         element.dataset.src = product.images[0]
         registerImageObserver(element)
     }
-    const seeMoreInformationProduct = () => {
+    const seeMoreInformationProduct = (event) => {
+        const element = event.target.nodeName
+        if(element === 'BUTTON') {
+            return false
+        }
         const searchInput = document.querySelector('.observer')
         unFixHeader(searchInput)
         navigate(`/product/:${product.id}`, {state: product.id})
@@ -31,12 +35,12 @@ const ProductHome = ({product}) => {
     }, [])
 
     return(
-        <article className="product">
+        <article className="product" onClick={seeMoreInformationProduct}>
             <picture className='product__image-box'>
                 <img id={`productImage-${product.numberProduct}`} className="product__image" alt={product.name} />
             </picture>
             <div className="title-price">
-                <h3 className='product__title' onClick={seeMoreInformationProduct}>{product.title}</h3>
+                <h3 className='product__title'>{product.title}</h3>
                 <p className='product__price'>${product.price}</p>
             </div>
             <p className='product__description'>{product.description}</p>
