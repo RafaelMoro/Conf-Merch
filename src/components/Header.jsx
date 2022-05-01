@@ -11,11 +11,16 @@ const Header = ({modal}) => {
 
     React.useEffect(() => {
         //Depending of the pathname, the shopping cart will be hidden in any route with exception of "/" and "/checkout"
-        if((location.pathname === '/') || (location.pathname === '/checkout')) {
-            setHideCart(false)
-        }else {
-            setHideCart(true)
-        }
+         if((location.pathname === '/') || (location.pathname === '/checkout')){
+             setHideCart(false)
+         }else {
+             if(location.pathname.includes('product')) {
+                 console
+                setHideCart(false)
+             }else {
+                setHideCart(true)
+             } 
+         }
     }, [location.pathname])
     
     React.useEffect(() => {
@@ -23,7 +28,6 @@ const Header = ({modal}) => {
         //The animations of header-fixed will only happen in the pathname "/"
         if(location.pathname === '/') {
             //If modal is active, add the darken-bg CSS class, if not, remove it
-            console.log('estoy aca')
             if(modal) {
                 header.classList.add('darken-bg')
             }else {
