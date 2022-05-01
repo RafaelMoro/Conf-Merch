@@ -28,14 +28,12 @@ const Header = ({modal}) => {
         if(location.pathname === '/') {
             //If modal is active, add the darken-bg CSS class, if not, remove it
             if(modal) {
-                header.classList.add('darken-bg')
+                header.classList.add('darken-bg--header')
             }else {
-                if(header.className.includes('darken-bg')) {
-                    header.classList.remove('darken-bg')
+                if(header.className.includes('darken-bg--header')) {
+                    header.classList.remove('darken-bg--header')
                 }
             }
-        }else {
-            header.className = "header animated"
         }
     }, [modal])
 

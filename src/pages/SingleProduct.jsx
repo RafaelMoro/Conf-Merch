@@ -6,7 +6,6 @@ const SingleProduct = () => {
     const id = location.state
     const [product, setProduct] = React.useState(false)
     const API = process.env.API
-    const disconnectFixHeader = true
 
     React.useEffect(() => {
         async function fetchProduct() {
