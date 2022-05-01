@@ -4,6 +4,7 @@ import {ProductHome} from '@components/ProductHome'
 import {SearchBar} from '@components/SearchBar'
 import { Context } from '../hooks/stateContext'
 import { fixHeader } from '@utils/fixHeader';
+import { getCountries } from '../utils/getAddress'
 import '@styles/pages/Home.scss'
 
 const Home = () => {

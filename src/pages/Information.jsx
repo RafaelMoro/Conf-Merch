@@ -1,13 +1,22 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Context } from '../hooks/stateContext';
+import { Context } from '../hooks/stateContext'
+import { getCountries, getStates } from '../utils/getAddress'
 import '@styles/pages/Information.scss'
 
 const Information = () => {
+    const countries = getCountries()
     const {state: {cart, totalPayment}, addBuyer} = React.useContext(Context)
+    const [statesCountry, setStatesCountry] = React.useState([])
     const form = React.useRef(null)
     const navigate = useNavigate()
 
+    const handleSelectCountry = (event) => {
+        const isoCode = event.target.value
+        const newStateCountry = getStates(isoCode)
+        console.log(newStateCountry)
+        setStatesCountry(newStateCountry)
+    }
     const handleSubmit = () => {
         const formData = new FormData(form.current)
         const buyer = {
@@ -37,6 +46,12 @@ const Information = () => {
                     <input className='input' type="text" placeholder="Apartamento" name="apto" />
                     <input className='input' type="text" placeholder="Ciudad" name="city" />
                     <input className='input' type="text" placeholder="País" name="country" />
+                    <select placeholder='Seleccione un pais' onChange={handleSelectCountry}>
+                        {countries && countries.map(country => (<option key={country.isoCode} value={country.isoCode}>{country.name}</option>))}
+                    </select>
+                    <select placeholder='Seleccione un estado'>
+                        {statesCountry.length > 0 && statesCountry.map(stateCountry => (<option key={stateCountry.isoCode} value={stateCountry.name}>{stateCountry.name}</option>))}
+                    </select>
                     <input className='input' type="text" placeholder="Estado" name="state" />
                     <input className='input' type="text" placeholder="Código Postal" name="cp" />
                 </form>
