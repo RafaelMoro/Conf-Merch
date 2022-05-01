@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
     return (
         <div className="layout">
             {modal && <Modal cart={cart} toggleModal={toggleModal} modal={modal} />}
-            <Header modal={modal} />
+            <Header />
                 {children}
             <Footer modal={modal} />
         </div>

@@ -28,6 +28,28 @@ button {
     font-size: $small;
     font-weight: $thin;
 }
+.darken-bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    filter: brightness(50%);
+}
+.darken-bg--thumbnail {
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    filter: brightness(50%);
+}
+.darken-bg--header {
+    width: 100%;
+    filter: brightness(70%);
+}
+.message-fade-in {
+    animation-name: message-fade-in;
+    animation-duration: 1s;
+}
+.message--fade-out {
+    animation-name: message-fade-out;
+    animation-duration: 1s;
+}
 .input:focus-visible {
     border: none;
     outline: solid $primary-color;

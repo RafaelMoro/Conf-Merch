@@ -1,33 +1,42 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
-import { fixHeader } from '../utils/fixHeader';
-import { registerImageObserver } from '../utils/lazyImages'
+import { unFixHeader } from '@utils/fixHeader'
+import { registerImageObserver } from '@utils/lazyImages'
+import { animateBuyButton } from '@utils/animateBuyButton'
 
 const ProductHome = ({product}) => {
     const {addToCart, modal} = React.useContext(Context)
+    const navigate = useNavigate()
+    
     const handleBuyProduct = (event) => {
-        const id = event.target.id
-        const button = document.querySelector(`#${id}`)
-        button.classList.add('rubberBand', 'animated')
+        animateBuyButton(event)
         addToCart(product)
-        setTimeout(() => button.classList.remove('rubberBand', 'animated'), 700)
     }
 
     const lazyLoadingImages = () => {
-        const element = document.querySelector(`#product${product.numberProduct}`)
+        const element = document.querySelector(`#productImage-${product.numberProduct}`)
         element.dataset.src = product.images[0]
         registerImageObserver(element)
     }
+    const seeMoreInformationProduct = (event) => {
+        const element = event.target.nodeName
+        if(element === 'BUTTON') {
+            return false
+        }
+        const searchInput = document.querySelector('.observer')
+        unFixHeader(searchInput)
+        navigate(`/product/:${product.id}`, {state: product.id})
+    }
     React.useEffect(() => {
-        fixHeader()
         lazyLoadingImages()
     }, [])
 
     return(
-        <article className="product">
+        <article className="product" onClick={seeMoreInformationProduct}>
             <picture className='product__image-box'>
-                <img id={`product${product.numberProduct}`} className="product__image" alt={product.name} />
+                <img id={`productImage-${product.numberProduct}`} className="product__image" alt={product.name} />
             </picture>
             <div className="title-price">
                 <h3 className='product__title'>{product.title}</h3>

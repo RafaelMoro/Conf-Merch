@@ -2,18 +2,31 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {Product} from '@components/Product'
 import { Context } from '../hooks/stateContext';
+import { unFixHeader } from '@utils/fixHeader'
 import '@styles/components/Modal.scss'
 
 const Modal = ({cart, toggleModal}) => {
     const {quantityEmpty} = React.useContext(Context)
     const closeModal = () => {
         const divModal = document.querySelector('#modal')
+        const header = document.querySelector('.header')
+
         divModal.classList.remove('fadeInRight')
         divModal.classList.add('fadeOutRight')
-
-        setTimeout(() => toggleModal(), 500)
+        setTimeout(() => {
+            if(header.className.includes('darken-bg--header')) {
+                header.classList.remove('darken-bg--header')
+            }else if(header.className.includes('darken-bg')) {
+                header.classList.remove('darken-bg')
+            }
+            toggleModal()
+        }, 500)
     }
-
+    const goCheckout = () => {
+        const searchInput = document.querySelector('.observer')
+        searchInput && unFixHeader(searchInput)
+        closeModal()
+    }
     if(cart.length < 1) {
         return(
             <>
@@ -44,7 +57,7 @@ const Modal = ({cart, toggleModal}) => {
                 <div className='products--modal'>
                     {cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} />))}
                 </div>
-                <Link className='modal__pay-anchor' to="/checkout"><button className='modal__pay-button' disabled={quantityEmpty} onClick={closeModal}>Proceder al pago</button></Link>
+                <Link className='modal__pay-anchor' to="/checkout"><button className='modal__pay-button' disabled={quantityEmpty} onClick={goCheckout}>Proceder al pago</button></Link>
             </div>
         )
     }

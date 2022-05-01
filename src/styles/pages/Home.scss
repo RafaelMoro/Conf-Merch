@@ -1,4 +1,6 @@
 .home {
+    position: relative;
+    z-index: 1;
     display: grid;
     padding: 0 1rem;
 }

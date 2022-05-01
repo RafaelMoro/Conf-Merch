@@ -46,6 +46,8 @@
 }
 .header-fixed {
     position: fixed;
+    top: 0;
+    z-index: 2;
     background-color: $background-1;
     box-shadow: 0 .3rem .4rem #444;
 }
