@@ -4,16 +4,15 @@ import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
 import { unFixHeader } from '../utils/fixHeader'
 import { registerImageObserver } from '../utils/lazyImages'
+import { animateBuyButton } from '../utils/animateBuyButton'
 
 const ProductHome = ({product}) => {
     const {addToCart, modal} = React.useContext(Context)
     const navigate = useNavigate()
+    
     const handleBuyProduct = (event) => {
-        const id = event.target.id
-        const button = document.querySelector(`#${id}`)
-        button.classList.add('rubberBand', 'animated')
+        animateBuyButton(event)
         addToCart(product)
-        setTimeout(() => button.classList.remove('rubberBand', 'animated'), 700)
     }
 
     const lazyLoadingImages = () => {

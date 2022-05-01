@@ -1,6 +1,7 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom'
 import { Context } from '../hooks/stateContext'
+import { animateBuyButton } from '../utils/animateBuyButton'
 import '@styles/pages/SingleProduct.scss'
 
 const SingleProduct = () => {
@@ -11,11 +12,8 @@ const SingleProduct = () => {
     const API = process.env.API
 
     const handleBuyProduct = (event) => {
-        const id = event.target.id
-        const button = document.querySelector(`#${id}`)
-        button.classList.add('rubberBand', 'animated')
+        animateBuyButton(event)
         addToCart(product)
-        setTimeout(() => button.classList.remove('rubberBand', 'animated'), 700)
     }
 
     const changeMainImage = (event) => {
