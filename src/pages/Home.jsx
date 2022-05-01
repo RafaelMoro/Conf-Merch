@@ -3,7 +3,7 @@ import {Products} from '@containers/Products'
 import {ProductHome} from '@components/ProductHome'
 import {SearchBar} from '@components/SearchBar'
 import { Context } from '../hooks/stateContext'
-import { fixHeader } from '../utils/fixHeader';
+import { fixHeader } from '@utils/fixHeader';
 import '@styles/pages/Home.scss'
 
 const Home = () => {

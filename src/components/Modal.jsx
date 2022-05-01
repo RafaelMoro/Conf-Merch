@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {Product} from '@components/Product'
 import { Context } from '../hooks/stateContext';
-import { unFixHeader } from '../utils/fixHeader'
+import { unFixHeader } from '@utils/fixHeader'
 import '@styles/components/Modal.scss'
 
 const Modal = ({cart, toggleModal, modal}) => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import '@styles/components/Footer.scss'
+
 const Footer = ({modal}) => {
     return (
         <footer className={(modal ? "footer darken-bg" : "footer")}>

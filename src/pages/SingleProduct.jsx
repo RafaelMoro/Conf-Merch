@@ -1,7 +1,7 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom'
 import { Context } from '../hooks/stateContext'
-import { animateBuyButton } from '../utils/animateBuyButton'
+import { animateBuyButton } from '@utils/animateBuyButton'
 import '@styles/pages/SingleProduct.scss'
 
 const SingleProduct = () => {
