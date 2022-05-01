@@ -15,13 +15,11 @@ const observer = new IntersectionObserver((entries) => {
 })
 function fixHeader(element) {
     observer.observe(element)
-    console.log('observed')
 }
 function unFixHeader(element) {
     if(header.className.includes('header-fixed')) {
         header.classList.remove('header-fixed', 'fadeInDownBig')
     }
     observer.unobserve(element)
-    console.log('unobserved')
 }
 export {fixHeader, unFixHeader}

@@ -38,6 +38,14 @@ button {
     width: 100%;
     filter: brightness(70%);
 }
+.message-fade-in {
+    animation-name: message-fade-in;
+    animation-duration: 1s;
+}
+.message--fade-out {
+    animation-name: message-fade-out;
+    animation-duration: 1s;
+}
 .input:focus-visible {
     border: none;
     outline: solid $primary-color;
