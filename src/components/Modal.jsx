@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {Product} from '@components/Product'
 import { Context } from '../hooks/stateContext';
+import { unFixHeader } from '../utils/fixHeader'
 import '@styles/components/Modal.scss'
 
 const Modal = ({cart, toggleModal}) => {
@@ -13,7 +14,11 @@ const Modal = ({cart, toggleModal}) => {
 
         setTimeout(() => toggleModal(), 500)
     }
-
+    const goCheckout = () => {
+        const searchInput = document.querySelector('.observer')
+        unFixHeader(searchInput)
+        closeModal()
+    }
     if(cart.length < 1) {
         return(
             <>
@@ -44,7 +49,7 @@ const Modal = ({cart, toggleModal}) => {
                 <div className='products--modal'>
                     {cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} />))}
                 </div>
-                <Link className='modal__pay-anchor' to="/checkout"><button className='modal__pay-button' disabled={quantityEmpty} onClick={closeModal}>Proceder al pago</button></Link>
+                <Link className='modal__pay-anchor' to="/checkout"><button className='modal__pay-button' disabled={quantityEmpty} onClick={goCheckout}>Proceder al pago</button></Link>
             </div>
         )
     }

@@ -15,11 +15,10 @@ const Header = ({modal}) => {
              setHideCart(false)
          }else {
              if(location.pathname.includes('product')) {
-                 console
                 setHideCart(false)
              }else {
                 setHideCart(true)
-             } 
+             }
          }
     }, [location.pathname])
     
@@ -36,7 +35,7 @@ const Header = ({modal}) => {
                 }
             }
         }else {
-           header.className = "header animated"
+            header.className = "header animated"
         }
     }, [modal])
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
-import { fixHeader } from '../utils/fixHeader';
+import { unFixHeader } from '../utils/fixHeader'
 import { registerImageObserver } from '../utils/lazyImages'
 
 const ProductHome = ({product}) => {
@@ -17,22 +17,26 @@ const ProductHome = ({product}) => {
     }
 
     const lazyLoadingImages = () => {
-        const element = document.querySelector(`#product${product.numberProduct}`)
+        const element = document.querySelector(`#productImage-${product.numberProduct}`)
         element.dataset.src = product.images[0]
         registerImageObserver(element)
     }
+    const seeMoreInformationProduct = () => {
+        const searchInput = document.querySelector('.observer')
+        unFixHeader(searchInput)
+        navigate(`/product/:${product.id}`, {state: product.id})
+    }
     React.useEffect(() => {
-        fixHeader()
         lazyLoadingImages()
     }, [])
 
     return(
         <article className="product">
             <picture className='product__image-box'>
-                <img id={`product${product.numberProduct}`} className="product__image" alt={product.name} />
+                <img id={`productImage-${product.numberProduct}`} className="product__image" alt={product.name} />
             </picture>
             <div className="title-price">
-                <h3 className='product__title' onClick={() => navigate(`/product/:${product.id}`, {state: product.id})}>{product.title}</h3>
+                <h3 className='product__title' onClick={seeMoreInformationProduct}>{product.title}</h3>
                 <p className='product__price'>${product.price}</p>
             </div>
             <p className='product__description'>{product.description}</p>
