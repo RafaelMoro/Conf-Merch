@@ -45,15 +45,20 @@ const Information = () => {
                     <input className='input' type="text" placeholder="Ciudad" name="city" />
                     <input className='input' type="text" placeholder="País" name="country" />
                     <Countries countries={countries} setStatesCountry={setStatesCountry}
-                        render={
+                        showCountries={
                             (country) => (<option key={country.isoCode} value={country.isoCode}>{country.name}</option>)
                         }
                     />
                     <StatesCountry statesCountry={statesCountry}
-                        render={
+                        noStatesAvailable={() => <p>No hay estados disponibles para este país.</p>}
+                        showStates={
                             (stateOfCountry) => {
                                 const randomNumber = generateRandomNumber()
-                                return(<option key={`${stateOfCountry.isoCode}${randomNumber}`} value={stateOfCountry.name}>{stateOfCountry.name}</option>)
+                                return(
+                                <option key={`${stateOfCountry.isoCode}${randomNumber}`} value={stateOfCountry.name}>
+                                    {stateOfCountry.name}
+                                </option>
+                                )
                             }
                         }
                     />

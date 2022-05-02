@@ -2,8 +2,6 @@ import React from 'react'
 import {getStates} from '@utils/getAddress'
 
 const Countries = (props) => {
-    const renderFunction = props.render
-
     const handleSelectCountry = (event) => {
         const isoCode = event.target.value
         const newStateCountry = getStates(isoCode)
@@ -11,9 +9,9 @@ const Countries = (props) => {
     }
 
     return(
-        <select name='countries' onChange={handleSelectCountry}>
-            <option value='' selected>Selecciona un país.</option>
-            {props.countries.map(renderFunction)}
+        <select name='countries' defaultValue="default" onChange={handleSelectCountry}>
+            <option value="default" disabled>Selecciona un país.</option>
+            {props.countries.map(props.showCountries)}
             {props.children}
         </select>
     )

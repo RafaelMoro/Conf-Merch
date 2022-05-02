@@ -1,20 +1,15 @@
 import React from 'react'
 
 const StatesCountry = (props) => {
-    const renderFunction = props.render
-    if(props.statesCountry.length > 0) {
         return(
-            <select name='statesCountry' disabled={props.statesCountry[0] === 'No country selected'}>
-                <option value="" selected>Seleccione un estado: </option>
-                { props.statesCountry.map(renderFunction) }
-                {props.children}
-            </select>
+            <>
+                {props.statesCountry.length < 1 && props.noStatesAvailable()}
+                {props.statesCountry.length > 0 && <select name='statesCountry' defaultValue="default" disabled={props.statesCountry[0] === 'No country selected'}>
+                    <option value="default" disabled> Seleccione un estado: </option>
+                    { props.statesCountry.map(props.showStates) }
+                    {props.children}
+                </select>}
+            </>
         )
-    }else {
-        return (
-            <p>No hay estados disponibles para este país.</p>
-        )
-    }
-    
 }
 export {StatesCountry}
