@@ -11,13 +11,11 @@ const Countries = (props) => {
     }
 
     return(
-        <>
-            <label htmlFor='countries'>Selecciona un país: </label>
-            <select name='countries' onChange={handleSelectCountry}>
-                {props.countries.map(renderFunction)}
-                {props.children}
-            </select>
-        </>
+        <select name='countries' onChange={handleSelectCountry}>
+            <option value='' selected>Selecciona un país.</option>
+            {props.countries.map(renderFunction)}
+            {props.children}
+        </select>
     )
 }
 export {Countries}

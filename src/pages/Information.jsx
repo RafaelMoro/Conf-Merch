@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Context } from '../hooks/stateContext'
 import {Countries} from '@components/Countries'
+import { StatesCountry } from '@components/StatesCountry'
 import { getCountries } from '@utils/getAddress'
 import {generateRandomNumber} from '@utils/generateRandomNumber'
 import '@styles/pages/Information.scss'
@@ -9,7 +10,7 @@ import '@styles/pages/Information.scss'
 const Information = () => {
     const countries = getCountries()
     const {state: {cart, totalPayment}, addBuyer} = React.useContext(Context)
-    const [statesCountry, setStatesCountry] = React.useState(['empty'])
+    const [statesCountry, setStatesCountry] = React.useState(['No country selected'])
     const form = React.useRef(null)
     const navigate = useNavigate()
 
@@ -48,10 +49,14 @@ const Information = () => {
                             (country) => (<option key={country.isoCode} value={country.isoCode}>{country.name}</option>)
                         }
                     />
-                    <label htmlFor="statesCountry"></label>
-                    {/* <select name='statesCountry'>
-                        {statesCountry.length > 0 && statesCountry.map(stateCountry => (<option key={stateCountry.isoCode} value={stateCountry.name}>{stateCountry.name}</option>))}
-                    </select> */}
+                    <StatesCountry statesCountry={statesCountry}
+                        render={
+                            (stateOfCountry) => {
+                                const randomNumber = generateRandomNumber()
+                                return(<option key={`${stateOfCountry.isoCode}${randomNumber}`} value={stateOfCountry.name}>{stateOfCountry.name}</option>)
+                            }
+                        }
+                    />
                     <input className='input' type="text" placeholder="Estado" name="state" />
                     <input className='input' type="text" placeholder="Código Postal" name="cp" />
                 </form>
