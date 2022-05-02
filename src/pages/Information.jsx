@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Context } from '../hooks/stateContext'
 import {Countries} from '@components/Countries'
 import { StatesCountry } from '@components/StatesCountry'
+import {Cities} from '@components/Cities'
 import { getCountries } from '@utils/getAddress'
 import {generateRandomNumber} from '@utils/generateRandomNumber'
 import '@styles/pages/Information.scss'
@@ -10,7 +11,13 @@ import '@styles/pages/Information.scss'
 const Information = () => {
     const countries = getCountries()
     const {state: {cart, totalPayment}, addBuyer} = React.useContext(Context)
-    const [statesCountry, setStatesCountry] = React.useState(['No country selected'])
+    const [address, setAddress] = React.useState({
+        countrySelected: '',
+        statesCountry: ['No Country Selected'],
+        stateCountrySelected: '',
+        cities: ['No State Selected'],
+        citySelected: ''
+    })
     const form = React.useRef(null)
     const navigate = useNavigate()
 
@@ -44,20 +51,32 @@ const Information = () => {
                     <input className='input' type="text" placeholder="Apartamento" name="apto" />
                     <input className='input' type="text" placeholder="Ciudad" name="city" />
                     <input className='input' type="text" placeholder="País" name="country" />
-                    <Countries countries={countries} setStatesCountry={setStatesCountry}
+                    <Countries countries={countries} setAddress={setAddress} address={address}
                         showCountries={
                             (country) => (<option key={country.isoCode} value={country.isoCode}>{country.name}</option>)
                         }
                     />
-                    <StatesCountry statesCountry={statesCountry}
+                    <StatesCountry address={address} setAddress={setAddress}
                         noStatesAvailable={() => <p>No hay estados disponibles para este país.</p>}
                         showStates={
                             (stateOfCountry) => {
                                 const randomNumber = generateRandomNumber()
                                 return(
-                                <option key={`${stateOfCountry.isoCode}${randomNumber}`} value={stateOfCountry.name}>
-                                    {stateOfCountry.name}
-                                </option>
+                                    <option key={`${stateOfCountry.isoCode}${randomNumber}`} value={stateOfCountry.isoCode}>
+                                        {stateOfCountry.name}
+                                    </option>
+                                )
+                            }
+                        }
+                    />
+                    <Cities address={address} setAddress={setAddress}
+                        showCities={
+                            (city) => {
+                                const randomNumber = generateRandomNumber()
+                                return(
+                                    <option key={`${city.countryCode}${city.stateCode}${randomNumber}`} value={city.name}>
+                                        {city.name}
+                                    </option>
                                 )
                             }
                         }

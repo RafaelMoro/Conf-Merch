@@ -1,12 +1,24 @@
 import React from 'react'
+import {getCities} from '@utils/getAddress'
 
 const StatesCountry = (props) => {
+    const {address: {statesCountry}} = props
+
+    const handleSelectCity = (event) => {
+        const codeStateCountry = event.target.value
+        const newCities = getCities( props.address.countrySelected, codeStateCountry)
+        props.setAddress({
+            ...props.address,
+            stateCountrySelected: codeStateCountry,
+            cities: newCities
+        })
+    }
         return(
             <>
-                {props.statesCountry.length < 1 && props.noStatesAvailable()}
-                {props.statesCountry.length > 0 && <select name='statesCountry' defaultValue="default" disabled={props.statesCountry[0] === 'No country selected'}>
+                {statesCountry.length < 1 && props.noStatesAvailable()}
+                {statesCountry.length > 0 && <select name='statesCountry' onChange={handleSelectCity} defaultValue="default" disabled={statesCountry[0] === 'No Country Selected'}>
                     <option value="default" disabled> Seleccione un estado: </option>
-                    { props.statesCountry.map(props.showStates) }
+                    { statesCountry.map(props.showStates) }
                     {props.children}
                 </select>}
             </>

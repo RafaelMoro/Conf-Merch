@@ -3,9 +3,13 @@ import {getStates} from '@utils/getAddress'
 
 const Countries = (props) => {
     const handleSelectCountry = (event) => {
-        const isoCode = event.target.value
-        const newStateCountry = getStates(isoCode)
-        props.setStatesCountry(newStateCountry)
+        const codeCountry = event.target.value
+        const statesOfCountry = getStates(codeCountry)
+        props.setAddress({
+            ...props.address,
+            countrySelected: codeCountry,
+            statesCountry: statesOfCountry
+        })
     }
 
     return(
