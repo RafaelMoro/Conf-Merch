@@ -1,10 +1,11 @@
-# Platzi Merch
+# Conf Merch
 
-Platzi Merch is a fictional front end of an e-commerce of Platzi.
+Conf Merch is a fictional front end of an e-commerce.
 
 ## Usage
 
 The website starts with a Home page showing the products where you can add them to the cart. You may see how many items you've added to the cart on the icon on the header on the top right part of the screen.
+You may click the product by clicking the image, title, description to see more information, more images. If you click on "Comprar", you'll add that item to the cart.
 If you click the shopping cart icon, a modal is shown with the quantity of each products you decided to buy.
 You can delete any product from the cart, add more or put a specific quantity.
 
@@ -19,6 +20,7 @@ Here are all the technologies, libraries used on this project:
 
 | Technologies / Libraries | Description |
 | ----------- | ----------- |
+| Public API | Platzi Fake Store API |
 | React | UI Interface  |
 | React Router  | Routing  |
 | Webpack  | Module Bundler  |
@@ -28,6 +30,9 @@ Here are all the technologies, libraries used on this project:
 | AniCollection | CSS Animations |
 
 In React, I used some hooks such as useState, useEffect, useRef for the form handlement, useContext for the global use of the state. useNavigate to send the user to the next screen. useLocation to pass any props between pages.
+I fetched the information of this fake store from a public API.
+
+This project will be in continous improvement.
 
 The website was launched into production with Netlify. This is the link: https://vocal-eclair-4a8151.netlify.app
 
@@ -50,4 +55,4 @@ To launch it on production mode:
 npm run build
 ```
 
-At the time being, the only environment variable is the "client-id" where is needed to use the Paypal SDK API.
+At the time being, The project handles two environment variables, one for the proper functioning of the Paypal SDK API and the other to fetch the data of the Public API.
