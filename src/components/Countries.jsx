@@ -3,17 +3,18 @@ import {getStates} from '@utils/getAddress'
 
 const Countries = (props) => {
     const handleSelectCountry = (event) => {
-        const codeCountry = event.target.value
-        const statesOfCountry = getStates(codeCountry)
+        const countryName = event.target.selectedOptions[0].label
+        const countryCode = event.target.value
+        const countryStates = getStates(countryCode)
         props.setAddress({
             ...props.address,
-            countrySelected: codeCountry,
-            statesCountry: statesOfCountry
+            countrySelected: [countryCode, countryName],
+            statesCountry: countryStates
         })
     }
 
     return(
-        <select className='input input--select' name='countries' defaultValue="default" onChange={handleSelectCountry}>
+        <select className='input input--select' defaultValue="default" onChange={handleSelectCountry}>
             <option value="default" disabled>Selecciona un país.</option>
             {props.countries.map(props.showCountries)}
             {props.children}

@@ -5,18 +5,20 @@ const StatesCountry = (props) => {
     const {address: {statesCountry}} = props
 
     const handleSelectCity = (event) => {
-        const codeStateCountry = event.target.value
-        const newCities = getCities( props.address.countrySelected, codeStateCountry)
-        props.setAddress({
-            ...props.address,
-            stateCountrySelected: codeStateCountry,
+        const {address, setAddress} = props
+        const countryStateName = event.target.selectedOptions[0].label
+        const countryStateCode = event.target.value
+        const newCities = getCities( address.countrySelected[0], countryStateCode)
+        setAddress({
+            ...address,
+            stateCountrySelected: [countryStateCode, countryStateName],
             cities: newCities
         })
     }
         return(
             <>
                 {statesCountry.length < 1 && props.noStatesAvailable()}
-                {statesCountry.length > 0 && <select className='input input--select' name='statesCountry' onChange={handleSelectCity} defaultValue="default" disabled={statesCountry[0] === 'No Country Selected'}>
+                {statesCountry.length > 0 && <select className='input input--select' defaultValue="default" onChange={handleSelectCity} disabled={statesCountry[0] === 'No Country Selected'}>
                     <option value="default" disabled> Seleccione un estado: </option>
                     { statesCountry.map(props.showStates) }
                     {props.children}
