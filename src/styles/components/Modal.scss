@@ -66,14 +66,24 @@
     .modal, .modal--empty {
         width: 70%;
     }
+    .product--modal {
+        max-width: 80rem;
+        align-self: center;
+    }
+    .product--modal .product__image-box .product__image {
+        max-width: 31rem;
+    }
 }
 @media(min-width: 1200px) {
     .modal, .modal--empty {
         width: 50%;
     }
     .products--modal {
-        height: 70rem;
+        height: 65rem;
         overflow-y: scroll;
         overscroll-behavior-y: contain;
+        display: grid;
+        justify-items: center;
+        padding-top: 2rem;
     }
 }
