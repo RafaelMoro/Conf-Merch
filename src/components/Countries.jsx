@@ -13,7 +13,7 @@ const Countries = (props) => {
     }
 
     return(
-        <select name='countries' defaultValue="default" onChange={handleSelectCountry}>
+        <select className='input input--select' name='countries' defaultValue="default" onChange={handleSelectCountry}>
             <option value="default" disabled>Selecciona un país.</option>
             {props.countries.map(props.showCountries)}
             {props.children}

@@ -49,8 +49,6 @@ const Information = () => {
                     
                     <input className='input' type="text" placeholder="Dirección" name="address" />
                     <input className='input' type="text" placeholder="Apartamento" name="apto" />
-                    <input className='input' type="text" placeholder="Ciudad" name="city" />
-                    <input className='input' type="text" placeholder="País" name="country" />
                     <Countries countries={countries} setAddress={setAddress} address={address}
                         showCountries={
                             (country) => (<option key={country.isoCode} value={country.isoCode}>{country.name}</option>)
@@ -81,7 +79,6 @@ const Information = () => {
                             }
                         }
                     />
-                    <input className='input' type="text" placeholder="Estado" name="state" />
                     <input className='input' type="text" placeholder="Código Postal" name="cp" />
                 </form>
                 <aside className='information--payment'>
