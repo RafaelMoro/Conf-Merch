@@ -36,7 +36,7 @@ const Header = () => {
             <div className='title' >
                 <Link to="/">
                     <img src={logo} alt="logo" />
-                    Platzi Merch
+                    Conf Merch
                  </Link>
             </div>
             <div className="search-bar__box">
