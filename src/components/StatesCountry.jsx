@@ -18,7 +18,7 @@ const StatesCountry = (props) => {
         return(
             <>
                 {statesCountry.length < 1 && props.noStatesAvailable()}
-                {statesCountry.length > 0 && <select className='input input--select' defaultValue="default" onChange={handleSelectCity} disabled={statesCountry[0] === 'No Country Selected'}>
+                {statesCountry.length > 0 && <select className="input input--select" defaultValue="default" onChange={handleSelectCity} disabled={statesCountry[0] === "No Country Selected"}>
                     <option value="default" disabled> Seleccione un estado: </option>
                     { statesCountry.map(props.showStates) }
                     {props.children}
