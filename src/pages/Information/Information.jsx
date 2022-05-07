@@ -8,6 +8,7 @@ import { StatesCountry } from '@components/StatesCountry'
 import {Cities} from '@components/Cities'
 import { getCountries } from '@utils/getAddress'
 import {generateRandomNumber} from '@utils/generateRandomNumber'
+import { optionsValidation } from './optionsFormValidation'
 import '@styles/pages/Information.scss'
 
 const Information = () => {
@@ -24,6 +25,8 @@ const Information = () => {
         citySelected: ''
     })
 
+    console.log('errors', errors)
+
     const saveInformation = (customerData) => {
         const customerInformation = {
             ...customerData,
@@ -31,18 +34,7 @@ const Information = () => {
             countryState: address.stateCountrySelected[1],
             city: address.citySelected
         }
-        //const formData = new FormData(form.current)
-        // const buyer = {
-        //     'name': formData.get('name'),
-        //     'email': formData.get('email'),
-        //     'address': formData.get('address'),
-        //     'apartment': formData.get('apartment'),
-        //     'country': address.countrySelected[1],
-        //     'countryState': address.stateCountrySelected[1],
-        //     'city': address.citySelected,
-        //     'postalCode': formData.get('postalCode'),
-        //     'phone': formData.get('phone'),
-        // }
+        console.log(customerInformation)
         addBuyer(customerInformation)
         //navigate('/checkout/payment')
     }
@@ -52,18 +44,18 @@ const Information = () => {
             <main className='information'>
                 <h1 className='information__title'>Información de contacto: </h1>
                 <form className='form' onSubmit={handleSubmit(saveInformation)}>
-                    <input className="input" type="text" placeholder="Nombre Completo" {...register("name")} />
-                    <input className="input" type="email" placeholder="Correo electrónico" {...register("email")}  />
-                    <input className="input" type="number" placeholder="Teléfono" {...register("phone")}/>
-                    <input className="input" type="text" placeholder="Dirección" {...register("address")} />
-                    <input className="input" type="text" placeholder="Apartamento" {...register("apartment")} />
+                    <input className="input" type="text" placeholder="Nombre Completo" {...register("name", optionsValidation.name)} />
+                    <input className="input" type="email" placeholder="Correo electrónico" {...register("email", optionsValidation.email)}  />
+                    <input className="input" type="number" placeholder="Teléfono" {...register("phone", optionsValidation.phone)}/>
+                    <input className="input" type="text" placeholder="Dirección" {...register("address", optionsValidation.address)} />
+                    <input className="input" type="text" placeholder="Apartamento" {...register("apartment", optionsValidation.apartment)} />
 
-                    <Countries countries={countries} setAddress={setAddress} address={address} register={register}
+                    <Countries countries={countries} setAddress={setAddress} address={address}
                         showCountries={
                             (country) => (<option key={country.isoCode} value={country.isoCode}>{country.name}</option>)
                         }
                     />
-                    <StatesCountry address={address} setAddress={setAddress} register={register}
+                    <StatesCountry address={address} setAddress={setAddress}
                         noStatesAvailable={() => <p className="form__countrystate--not-found">No hay estados disponibles para este país.</p>}
                         showStates={
                             (stateOfCountry) => {
@@ -76,7 +68,7 @@ const Information = () => {
                             }
                         }
                     />
-                    <Cities address={address} setAddress={setAddress} register={register}
+                    <Cities address={address} setAddress={setAddress}
                         showCities={
                             (city) => {
                                 const randomNumber = generateRandomNumber()
@@ -88,7 +80,7 @@ const Information = () => {
                             }
                         }
                     />
-                    <input className="input" type="text" placeholder="Código Postal" {...register("postalCode")} />
+                    <input className="input" type="number" placeholder="Código Postal" {...register("postalCode", optionsValidation.postalCode)} />
                     <aside className="information--payment">
                         <p>Total a pagar: <span>${totalPayment} USD</span> </p>
                     </aside>
@@ -97,7 +89,6 @@ const Information = () => {
                         <button className="button--proceed" type="submit">Pagar</button>
                     </div>
                 </form>
-                
             </main>
         )
     } else {
