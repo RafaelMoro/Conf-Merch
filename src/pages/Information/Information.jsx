@@ -6,6 +6,8 @@ import { Context } from '../../hooks/stateContext'
 import {Countries} from '@components/Countries'
 import { StatesCountry } from '@components/StatesCountry'
 import {Cities} from '@components/Cities'
+import {InputForm} from '@components/InputForm'
+
 import { getCountries } from '@utils/getAddress'
 import {generateRandomNumber} from '@utils/generateRandomNumber'
 import { optionsValidation } from './optionsFormValidation'
@@ -25,8 +27,6 @@ const Information = () => {
         citySelected: ''
     })
 
-    console.log('errors', errors)
-
     const saveInformation = (customerData) => {
         const customerInformation = {
             ...customerData,
@@ -44,13 +44,55 @@ const Information = () => {
             <main className='information'>
                 <h1 className='information__title'>Información de contacto: </h1>
                 <form className='form' onSubmit={handleSubmit(saveInformation)}>
-                    <input className="input" type="text" placeholder="Nombre Completo" {...register("name", optionsValidation.name)} />
-                    <input className="input" type="email" placeholder="Correo electrónico" {...register("email", optionsValidation.email)}  />
-                    <input className="input" type="number" placeholder="Teléfono" {...register("phone", optionsValidation.phone)}/>
-                    <input className="input" type="text" placeholder="Dirección" {...register("address", optionsValidation.address)} />
-                    <input className="input" type="text" placeholder="Apartamento" {...register("apartment", optionsValidation.apartment)} />
-                    <input className="input" type="number" placeholder="Código Postal" {...register("postalCode", optionsValidation.postalCode)} />
-
+                    <InputForm
+                        type="text"
+                        placeholder="Nombre Completo"
+                        register={register}
+                        options={optionsValidation.name}
+                        inputName="name"
+                        errors={errors?.name}
+                        onError={() => <p>Error: {errors?.name.type} </p>}
+                    />
+                    <InputForm
+                        type="email"
+                        placeholder="Correo electrónico"
+                        register={register}
+                        options={optionsValidation.email}
+                        inputName="email"
+                        errors={errors?.email}
+                    />
+                    <InputForm
+                        type="number"
+                        placeholder="Teléfono"
+                        register={register}
+                        options={optionsValidation.phone}
+                        inputName="phone"
+                        errors={errors?.phone}
+                    />
+                    <InputForm
+                        type="text"
+                        placeholder="Dirección"
+                        register={register}
+                        options={optionsValidation.address}
+                        inputName="address"
+                        errors={errors?.address}
+                    />
+                    <InputForm
+                        type="text"
+                        placeholder="Apartamento"
+                        register={register}
+                        options={optionsValidation.apartment}
+                        inputName="apartment"
+                        errors={errors?.apartment}
+                    />
+                    <InputForm
+                        type="number"
+                        placeholder="Código Postal"
+                        register={register}
+                        options={optionsValidation.postalCode}
+                        inputName="postalCode"
+                        errors={errors?.postalCode}
+                    />
                     <Countries countries={countries} setAddress={setAddress} address={address}
                         showCountries={
                             (country) => (<option key={country.isoCode} value={country.isoCode}>{country.name}</option>)
