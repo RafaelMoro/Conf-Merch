@@ -49,6 +49,7 @@ const Information = () => {
                     <input className="input" type="number" placeholder="Teléfono" {...register("phone", optionsValidation.phone)}/>
                     <input className="input" type="text" placeholder="Dirección" {...register("address", optionsValidation.address)} />
                     <input className="input" type="text" placeholder="Apartamento" {...register("apartment", optionsValidation.apartment)} />
+                    <input className="input" type="number" placeholder="Código Postal" {...register("postalCode", optionsValidation.postalCode)} />
 
                     <Countries countries={countries} setAddress={setAddress} address={address}
                         showCountries={
@@ -80,7 +81,6 @@ const Information = () => {
                             }
                         }
                     />
-                    <input className="input" type="number" placeholder="Código Postal" {...register("postalCode", optionsValidation.postalCode)} />
                     <aside className="information--payment">
                         <p>Total a pagar: <span>${totalPayment} USD</span> </p>
                     </aside>

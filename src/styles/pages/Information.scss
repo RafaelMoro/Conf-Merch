@@ -28,6 +28,9 @@
     justify-content: space-evenly;
     margin-bottom: 2rem;
 }
+.information--payment {
+    padding: 2rem 0;
+}
 .information--payment p {
     font-size: $medium;
     text-align: center;
@@ -49,18 +52,7 @@
     }
 }
 @media (min-width: 1024px) {
-    .information {
-        display: grid;
-        grid-template-columns: 70% 30%;
-        grid-template-rows: 15% 65% 20%;
-    }
-    .information__title, .information__buttons {
-        grid-column: 1 / 3;
-    }
     .form__input {
         font-size: $medium;
-    }
-    .information--payment {
-        place-self: center;
     }
 }

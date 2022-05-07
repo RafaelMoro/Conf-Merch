@@ -18,7 +18,6 @@ export const optionsValidation = {
         pattern: /^[\wáéíóúñäëïöü\s,\.\-]{3,50}$/i
     },
     apartment: {
-        required: true,
         maxLength: 10,
         pattern: /[0-9a-z\-\.]{1,10}/i
     },
