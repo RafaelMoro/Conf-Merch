@@ -43,27 +43,32 @@ const Information = () => {
         }
 
         if(numberErrors < 1) {
+            //If there are no errors in the input validation, check if a country has been selected
             if(customerInformation.country === "Country Name") {
                 setAddressNotSelected({ ...addressNotSelected, country: true})
             }else if((customerInformation.countryState === "Country State Name")&&(address.statesCountry.length > 1)) {
+                //Check if a country state was selected in a country that has states
                 setAddressNotSelected({ 
                     ...addressNotSelected, 
                     country: false,
                     countryState: true
                 })
             }else if((customerInformation.city === '')&&(address.statesCountry.length > 1)) {
+                //Check if a city was selected in a country that has states
                 setAddressNotSelected({ 
                     country: false,
                     countryState: false,
                     city: true
                 })
             }else {
+                //Country, state and city were selected
                 setAddressNotSelected({ 
                     country: false,
                     countryState: false,
                     city: false
                 })
                 if(address.statesCountry.length < 1 || address.cities.length < 1) {
+                    //If there are no country states and cities available, update the data
                     const updatedData = {
                         ...customerInformation,
                         countryState: "No states available for this country",
@@ -73,7 +78,7 @@ const Information = () => {
                 }else {
                     addBuyer(customerInformation)
                 }
-                //navigate('/checkout/payment')
+                navigate('/checkout/payment')
             }
         }
     }
@@ -91,6 +96,7 @@ const Information = () => {
                         inputName="name"
                     />
                     {errors?.name && <ErrorMessage message={errors?.name?.message} cssClass="message--form"/>}
+
                     <InputForm
                         type="email"
                         placeholder="Correo electrónico"
@@ -99,6 +105,7 @@ const Information = () => {
                         inputName="email"
                     />
                     {errors?.email && <ErrorMessage message={errors?.email?.message} cssClass="message--form"/>}
+
                     <InputForm
                         type="number"
                         placeholder="Teléfono"
@@ -107,6 +114,7 @@ const Information = () => {
                         inputName="phone"
                     />
                     {errors?.phone && <ErrorMessage message={errors?.phone?.message} cssClass="message--form"/>}
+
                     <InputForm
                         type="text"
                         placeholder="Dirección"
@@ -115,6 +123,7 @@ const Information = () => {
                         inputName="address"
                     />
                     {errors?.address && <ErrorMessage message={errors?.address?.message} cssClass="message--form"/>}
+
                     <InputForm
                         type="text"
                         placeholder="Apartamento"
@@ -123,6 +132,7 @@ const Information = () => {
                         inputName="apartment"
                     />
                     {errors?.apartment && <ErrorMessage message={errors?.apartment?.message} cssClass="message--form"/>}
+
                     <InputForm
                         type="number"
                         placeholder="Código Postal"
@@ -131,11 +141,14 @@ const Information = () => {
                         inputName="postalCode"
                     />
                     {errors?.postalCode && <ErrorMessage message={errors?.postalCode?.message} cssClass="message--form"/>}
+
                     <Countries countries={countries} setAddress={setAddress} address={address}
                         showCountries={
                             (country) => (<option key={country.isoCode} value={country.isoCode}>{country.name}</option>)
                         }
                     />
+                    {addressNotSelected.country && <ErrorMessage message="Seleccione un país" cssClass="message--form" />}
+
                     <StatesCountry address={address} setAddress={setAddress}
                         noStatesAvailable={() => <p className="form__countrystate--not-found">No hay estados disponibles para este país.</p>}
                         showStates={
@@ -149,6 +162,8 @@ const Information = () => {
                             }
                         }
                     />
+                    {addressNotSelected.countryState && <ErrorMessage message="Seleccione un estado" cssClass="message--form" />}
+
                     <Cities address={address} setAddress={setAddress}
                         noCitiesAvailable={() => <p className="form__countrystate--not-found">No hay ciudades disponibles para este país.</p>}
                         showCities={
@@ -162,6 +177,8 @@ const Information = () => {
                             }
                         }
                     />
+                    {addressNotSelected.city && <ErrorMessage message="Selecciona una ciudad" cssClass="message--form" />}
+
                     <aside className="information--payment">
                         <p>Total a pagar: <span>${totalPayment} USD</span> </p>
                     </aside>
