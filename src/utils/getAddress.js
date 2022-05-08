@@ -9,4 +9,7 @@ const getStates = (isoCode) => {
 const getCities = (countryCode, stateCode) => {
     return City.getCitiesOfState(countryCode, stateCode)
 }
-export {getCountries, getStates, getCities}
+const getCitiesOfCountry = (countryCode) => {
+    return City.getCitiesOfCountry(countryCode)
+}
+export {getCountries, getStates, getCities, getCitiesOfCountry}

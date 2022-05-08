@@ -7,6 +7,7 @@ import {Countries} from '@components/Countries'
 import { StatesCountry } from '@components/StatesCountry'
 import {Cities} from '@components/Cities'
 import {InputForm} from '@components/InputForm'
+import {ErrorMessage} from '@components/ErrorMessage'
 
 import { getCountries } from '@utils/getAddress'
 import {generateRandomNumber} from '@utils/generateRandomNumber'
@@ -18,6 +19,11 @@ const Information = () => {
     const {state: {cart, totalPayment}, addBuyer} = React.useContext(Context)
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm()
+    const [addressNotSelected, setAddressNotSelected] = React.useState({
+        country: false,
+        countryState: false,
+        city: false
+    })
 
     const [address, setAddress] = React.useState({
         countrySelected: ['Country Code', 'Country Name'],
@@ -26,15 +32,50 @@ const Information = () => {
         cities: ['No State Selected'],
         citySelected: ''
     })
+
     const saveInformation = (customerData) => {
+        const numberErrors = Object.keys(errors).length
         const customerInformation = {
             ...customerData,
             country: address.countrySelected[1],
             countryState: address.stateCountrySelected[1],
             city: address.citySelected
         }
-        addBuyer(customerInformation)
-        //navigate('/checkout/payment')
+
+        if(numberErrors < 1) {
+            if(customerInformation.country === "Country Name") {
+                setAddressNotSelected({ ...addressNotSelected, country: true})
+            }else if((customerInformation.countryState === "Country State Name")&&(address.statesCountry.length > 1)) {
+                setAddressNotSelected({ 
+                    ...addressNotSelected, 
+                    country: false,
+                    countryState: true
+                })
+            }else if((customerInformation.city === '')&&(address.statesCountry.length > 1)) {
+                setAddressNotSelected({ 
+                    country: false,
+                    countryState: false,
+                    city: true
+                })
+            }else {
+                setAddressNotSelected({ 
+                    country: false,
+                    countryState: false,
+                    city: false
+                })
+                if(address.statesCountry.length < 1 || address.cities.length < 1) {
+                    const updatedData = {
+                        ...customerInformation,
+                        countryState: "No states available for this country",
+                        city: "No city available for this country"
+                    }
+                    addBuyer(updatedData)
+                }else {
+                    addBuyer(customerInformation)
+                }
+                //navigate('/checkout/payment')
+            }
+        }
     }
 
     if((cart)&&(cart.length > 0)) {
@@ -49,7 +90,7 @@ const Information = () => {
                         options={optionsValidation.name}
                         inputName="name"
                     />
-                    {errors?.name && <p className="form__countrystate--not-found">{errors?.name?.message}</p>}
+                    {errors?.name && <ErrorMessage message={errors?.name?.message} cssClass="message--form"/>}
                     <InputForm
                         type="email"
                         placeholder="Correo electrónico"
@@ -57,6 +98,7 @@ const Information = () => {
                         options={optionsValidation.email}
                         inputName="email"
                     />
+                    {errors?.email && <ErrorMessage message={errors?.email?.message} cssClass="message--form"/>}
                     <InputForm
                         type="number"
                         placeholder="Teléfono"
@@ -64,6 +106,7 @@ const Information = () => {
                         options={optionsValidation.phone}
                         inputName="phone"
                     />
+                    {errors?.phone && <ErrorMessage message={errors?.phone?.message} cssClass="message--form"/>}
                     <InputForm
                         type="text"
                         placeholder="Dirección"
@@ -71,6 +114,7 @@ const Information = () => {
                         options={optionsValidation.address}
                         inputName="address"
                     />
+                    {errors?.address && <ErrorMessage message={errors?.address?.message} cssClass="message--form"/>}
                     <InputForm
                         type="text"
                         placeholder="Apartamento"
@@ -78,6 +122,7 @@ const Information = () => {
                         options={optionsValidation.apartment}
                         inputName="apartment"
                     />
+                    {errors?.apartment && <ErrorMessage message={errors?.apartment?.message} cssClass="message--form"/>}
                     <InputForm
                         type="number"
                         placeholder="Código Postal"
@@ -85,6 +130,7 @@ const Information = () => {
                         options={optionsValidation.postalCode}
                         inputName="postalCode"
                     />
+                    {errors?.postalCode && <ErrorMessage message={errors?.postalCode?.message} cssClass="message--form"/>}
                     <Countries countries={countries} setAddress={setAddress} address={address}
                         showCountries={
                             (country) => (<option key={country.isoCode} value={country.isoCode}>{country.name}</option>)
@@ -104,6 +150,7 @@ const Information = () => {
                         }
                     />
                     <Cities address={address} setAddress={setAddress}
+                        noCitiesAvailable={() => <p className="form__countrystate--not-found">No hay ciudades disponibles para este país.</p>}
                         showCities={
                             (city) => {
                                 const randomNumber = generateRandomNumber()

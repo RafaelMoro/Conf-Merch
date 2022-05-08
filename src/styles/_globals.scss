@@ -43,12 +43,18 @@ button {
     filter: brightness(70%);
 }
 .message {
+    background-color: $background-1;
+    padding: 1rem;
     color: $negative;
     border: 1px solid $white;
     border-radius: 1rem;
-    padding: 1rem;
     font-weight: $bold;
     font-size: $small;
+}
+.message--form {
+    max-width: 60rem;
+    justify-self: center;
+    margin-bottom: 3rem;
 }
 .message--fade-in {
     animation-name: message-fade-in;
