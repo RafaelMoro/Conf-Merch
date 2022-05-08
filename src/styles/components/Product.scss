@@ -51,14 +51,6 @@
 .quantity p {
     font-weight: $thin;
 }
-.quantity__message {
-    color: $negative;
-    border: 1px solid $white;
-    border-radius: 1rem;
-    padding: 1rem;
-    font-weight: $bold;
-    font-size: $small;
-}
 .input--error {
     border: 1px solid $negative;
 }

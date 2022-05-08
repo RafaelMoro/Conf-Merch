@@ -42,7 +42,15 @@ button {
     width: 100%;
     filter: brightness(70%);
 }
-.message-fade-in {
+.message {
+    color: $negative;
+    border: 1px solid $white;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-weight: $bold;
+    font-size: $small;
+}
+.message--fade-in {
     animation-name: message-fade-in;
     animation-duration: 1s;
 }
