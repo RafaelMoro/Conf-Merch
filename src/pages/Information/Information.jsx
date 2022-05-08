@@ -17,7 +17,7 @@ const Information = () => {
     const countries = getCountries()
     const {state: {cart, totalPayment}, addBuyer} = React.useContext(Context)
     const navigate = useNavigate()
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm()
 
     const [address, setAddress] = React.useState({
         countrySelected: ['Country Code', 'Country Name'],
@@ -26,7 +26,6 @@ const Information = () => {
         cities: ['No State Selected'],
         citySelected: ''
     })
-
     const saveInformation = (customerData) => {
         const customerInformation = {
             ...customerData,
@@ -34,7 +33,6 @@ const Information = () => {
             countryState: address.stateCountrySelected[1],
             city: address.citySelected
         }
-        console.log(customerInformation)
         addBuyer(customerInformation)
         //navigate('/checkout/payment')
     }
@@ -50,16 +48,14 @@ const Information = () => {
                         register={register}
                         options={optionsValidation.name}
                         inputName="name"
-                        errors={errors?.name}
-                        onError={() => <p>Error: {errors?.name.type} </p>}
                     />
+                    {errors?.name && <p className="form__countrystate--not-found">{errors?.name?.message}</p>}
                     <InputForm
                         type="email"
                         placeholder="Correo electrónico"
                         register={register}
                         options={optionsValidation.email}
                         inputName="email"
-                        errors={errors?.email}
                     />
                     <InputForm
                         type="number"
@@ -67,7 +63,6 @@ const Information = () => {
                         register={register}
                         options={optionsValidation.phone}
                         inputName="phone"
-                        errors={errors?.phone}
                     />
                     <InputForm
                         type="text"
@@ -75,7 +70,6 @@ const Information = () => {
                         register={register}
                         options={optionsValidation.address}
                         inputName="address"
-                        errors={errors?.address}
                     />
                     <InputForm
                         type="text"
@@ -83,7 +77,6 @@ const Information = () => {
                         register={register}
                         options={optionsValidation.apartment}
                         inputName="apartment"
-                        errors={errors?.apartment}
                     />
                     <InputForm
                         type="number"
@@ -91,7 +84,6 @@ const Information = () => {
                         register={register}
                         options={optionsValidation.postalCode}
                         inputName="postalCode"
-                        errors={errors?.postalCode}
                     />
                     <Countries countries={countries} setAddress={setAddress} address={address}
                         showCountries={
