@@ -1,8 +1,10 @@
 import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import {createStore} from 'redux'
+import {createStore, compose, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
-import {productsReducer} from '../redux/reducers/products.reducer'
+import createSagaMiddleware from '@redux-saga/core'
+import { productsSaga } from '../redux/sagas'
+import { productsReducer } from '../redux/reducers/products.reducer'
 
 import { Home } from '@pages/Home'
 import { NotFound } from '@pages/NotFound'
@@ -15,7 +17,11 @@ import {StateContext} from '../hooks/stateContext'
 import {SingleProduct} from '@pages/SingleProduct'
 import '@styles/main.scss'
 
-const store = createStore(productsReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),)
+const sagaMiddleware = createSagaMiddleware()
+const composeAlt = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose
+const composedEnhancers = composeAlt(applyMiddleware(sagaMiddleware))
+const store = createStore(productsReducer, composedEnhancers)
+sagaMiddleware.run(productsSaga)
 const App = () => {
     return(
         <BrowserRouter>

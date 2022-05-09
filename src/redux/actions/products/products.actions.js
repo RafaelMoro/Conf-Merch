@@ -1,8 +1,11 @@
-import { FETCH_PRODUCTS } from "./products.type"
+import { FETCH_PRODUCTS, SET_PRODUCTS } from "./products.type"
 
 const setProducts = (payload) => ({
-    type: FETCH_PRODUCTS,
+    type: SET_PRODUCTS,
     payload
 })
+const fetchProducts = () => ({
+    type: FETCH_PRODUCTS
+})
 
-export {setProducts}
+export {setProducts, fetchProducts}
