@@ -1,5 +1,9 @@
 import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import {productsReducer} from '../redux/reducers/products.reducer'
+
 import { Home } from '@pages/Home'
 import { NotFound } from '@pages/NotFound'
 import { Checkout } from '@pages/Checkout'
@@ -11,9 +15,11 @@ import {StateContext} from '../hooks/stateContext'
 import {SingleProduct} from '@pages/SingleProduct'
 import '@styles/main.scss'
 
+const store = createStore(productsReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),)
 const App = () => {
     return(
         <BrowserRouter>
+            <Provider store={store}>
             <StateContext>
                 <Layout>
                     <Routes>
@@ -27,6 +33,7 @@ const App = () => {
                     </Routes>
                 </Layout>
             </StateContext>
+            </Provider>
         </BrowserRouter>
     )
 }
