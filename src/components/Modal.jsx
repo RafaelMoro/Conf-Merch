@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleModal } from '@actions/ui/ui.actions'
 import {Product} from '@components/Product'
-import { Context } from '../hooks/stateContext'
 import { unFixHeader } from '@utils/fixHeader'
 import '@styles/components/Modal.scss'
 
 const Modal = ({cart}) => {
-    //const {quantityEmpty} = React.useContext(Context)
     const dispatch = useDispatch()
     const quantityInputEmpty = useSelector(state => state.ui.quantityInputEmpty)
 
