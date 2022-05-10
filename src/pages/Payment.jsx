@@ -8,7 +8,7 @@ import '@styles/pages/Payment.scss'
 const Payment = () => {
     const dispatch = useDispatch()
     const confMerch = useSelector(state => state.confMerch)
-    const { cart, buyers, totalPayment } = confMerch
+    const { cart, buyers, totalPayment, totalCartItems } = confMerch
     const navigate = useNavigate()
 
     const paypalOptions = {
@@ -29,9 +29,21 @@ const Payment = () => {
     }
 
     const handlePaymentSuccess = (data) => {
+        const newCart = cart.map(product => {
+            const { id, title, description, price, quantity } = product
+            return {
+                id,
+                title,
+                description,
+                price,
+                quantity
+            }
+        })
         const newOrder = {
             buyers,
-            products: cart,
+            products: newCart,
+            amountOfProducts: totalCartItems,
+            total: totalPayment,
             payment: data
         }
         dispatch(addOrder(newOrder))

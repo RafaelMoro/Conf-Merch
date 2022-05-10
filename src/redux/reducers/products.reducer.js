@@ -1,4 +1,4 @@
-import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS, MODIFY_QUANTITY_PRODUCT, DELETE_PRODUCT_CART, SET_SINGLE_PRODUCT, ADD_ORDER, ADD_BUYER } from "@actions/products/products.type"
+import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS, MODIFY_QUANTITY_PRODUCT, DELETE_PRODUCT_CART, SET_SINGLE_PRODUCT, ADD_ORDER, ADD_BUYER, RESET_CART } from "@actions/products/products.type"
 
 const initialState = {
     products: [],
@@ -79,6 +79,14 @@ const productsReducer = (state = initialState, action) => {
             return { ...state, orders: [...state.orders, action.payload]}
         case ADD_BUYER:
             return { ...state, buyers: [...state.buyers, action.payload]}
+        case RESET_CART:
+            return {
+                ...state,
+                cart: [],
+                buyers: [],
+                totalCartItems: 0,
+                totalPayment: 0
+            }
         default:
             return {...state}
     }

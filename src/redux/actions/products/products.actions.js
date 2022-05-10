@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS, MODIFY_QUANTITY_PRODUCT, DELETE_PRODUCT_CART, FETCH_SINGLE_PRODUCT, SET_SINGLE_PRODUCT, ADD_ORDER, ADD_BUYER } from "./products.type"
+import { FETCH_PRODUCTS, SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS, MODIFY_QUANTITY_PRODUCT, DELETE_PRODUCT_CART, FETCH_SINGLE_PRODUCT, SET_SINGLE_PRODUCT, ADD_ORDER, ADD_BUYER, RESET_CART } from "./products.type"
 
 export const setProducts = (payload) => ({
     type: SET_PRODUCTS,
@@ -42,4 +42,7 @@ export const addOrder = (payload) => ({
 export const addBuyer = (payload) => ({
     type: ADD_BUYER,
     payload
+})
+export const resetCart = () => ({
+    type: RESET_CART
 })

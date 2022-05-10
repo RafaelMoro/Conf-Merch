@@ -77,10 +77,8 @@ const Information = () => {
                         countryState: "No states available for this country",
                         city: "No city available for this country"
                     }
-                    console.log(updatedData)
                     dispatch(addBuyer(updatedData))
                 }else {
-                    console.log(customerInformation)
                     dispatch(addBuyer(customerInformation))
                 }
                 navigate('/checkout/payment')
