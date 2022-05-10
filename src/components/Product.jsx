@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleQuantityEmpty } from '@actions/ui/ui.actions'
-import { modifyQuantity } from '@actions/products/products.actions'
+import { modifyQuantity, deleteProductCart } from '@actions/products/products.actions'
 import {ErrorMessage} from '@components/ErrorMessage'
 import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
@@ -9,7 +9,7 @@ import { Context } from '../hooks/stateContext';
 const Product = ({product}) => {
     const quantityInputEmpty = useSelector(state => state.ui.quantityInputEmpty)
     const dispatch = useDispatch()
-    const {deleteProductFromCart} = React.useContext(Context)
+    //const {deleteProductFromCart} = React.useContext(Context)
     //This state is to show the user to fill a quantity but only the product where the input is empty
     const [fillQuantity, setFillQuantity] = React.useState(false)
 
@@ -43,7 +43,7 @@ const Product = ({product}) => {
                 </div>
                 {fillQuantity && <ErrorMessage message="Por favor, ingrese una cantidad" cssClass="message--quantity" />}
                 <div className='product__trash-price'>
-                    <svg onClick={() => deleteProductFromCart(product)} xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="32" height="32" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff2825" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                    <svg onClick={() => dispatch(deleteProductCart(product))} xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="32" height="32" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ff2825" fill="none" strokeLinecap="round" strokeLinejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <line x1="4" y1="7" x2="20" y2="7" />
                         <line x1="10" y1="11" x2="10" y2="17" />

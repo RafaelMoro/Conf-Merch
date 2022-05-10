@@ -1,4 +1,4 @@
-import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS, MODIFY_QUANTITY_PRODUCT } from "@actions/products/products.type"
+import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS, MODIFY_QUANTITY_PRODUCT, DELETE_PRODUCT_CART } from "@actions/products/products.type"
 
 const initialState = {
     products: [],
@@ -62,6 +62,9 @@ const productsReducer = (state = initialState, action) => {
             }else {
                 return {...state}
             }
+        case DELETE_PRODUCT_CART:
+            const cartModified = state.cart.filter(product => product.id !== action.payload.id)
+            return { ...state, cart: cartModified}
         case SET_FILTERED_PRODUCTS:
             return {...state, filteredProducts: action.payload}
         default:
