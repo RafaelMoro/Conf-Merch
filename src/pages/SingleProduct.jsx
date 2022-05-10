@@ -1,22 +1,22 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Context } from '../hooks/stateContext'
+import { fetchSingleProduct, addProductCart } from '@actions/products/products.actions'
 import { animateBuyButton } from '@utils/animateBuyButton'
 import '@styles/pages/SingleProduct.scss'
 
 const SingleProduct = () => {
-    const {addToCart} = React.useContext(Context)
-    const modal = useSelector(state => state.ui.modal)
-    
+    const dispatch = useDispatch()
+    const state = useSelector(state => state)
+    const { confMerch: { productsInDetail }, ui: { modal }} = state
+    const amountOfProducts = productsInDetail.length
+    const product = productsInDetail[amountOfProducts - 1]
     const location = useLocation()
     const id = location.state
-    const [product, setProduct] = React.useState(false)
-    const API = process.env.API
 
     const handleBuyProduct = (event) => {
         animateBuyButton(event)
-        addToCart(product)
+        dispatch(addProductCart(product))
     }
 
     const changeMainImage = (event) => {
@@ -35,18 +35,12 @@ const SingleProduct = () => {
         const principalImage = document.querySelector('.single-product__image--principal')
         principalImage.src = newImage
     }
+
     React.useEffect(() => {
-        async function fetchProduct() {
-            try {
-                const fetchData = await fetch(`${API}/${id}`)
-                const productFetched = await fetchData.json()
-                setProduct(productFetched)
-            }catch(err) {
-                console.error('Fetching Single product Error', err)
-            }
-        }
-        fetchProduct()
+        //Ver si ese id ya existe en productsInDetail, sino, hacer fetch, si existe, mostrar ese producto
+        dispatch(fetchSingleProduct(id))
     }, [])
+    
     if(product) {
         return(
             <main className={(modal ? "container__single-product darken-bg" : "container__single-product")}>
