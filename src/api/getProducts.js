@@ -6,13 +6,4 @@ const getProducts = () => {
         .then(data => data)
         .catch(error => error)
 }
-const getSingleProduct = async(productId) => {
-    try {
-        const fetchData = await fetch(`${API}/${productId}`)
-        const productFetched = await fetchData.json()
-        return productFetched
-    } catch (error) {
-        console.error('Fetching Single Product Error', error)
-    }
-}
-export { getProducts, getSingleProduct }
+export { getProducts }

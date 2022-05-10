@@ -4,16 +4,8 @@ export const setProducts = (payload) => ({
     type: SET_PRODUCTS,
     payload
 })
-export const setSingleProduct = (payload) => ({
-    type: SET_SINGLE_PRODUCT,
-    payload
-})
 export const fetchProducts = () => ({
     type: FETCH_PRODUCTS
-})
-export const fetchSingleProduct = (payload) => ({
-    type: FETCH_SINGLE_PRODUCT,
-    payload
 })
 export const setFilteredProducts = (payload) => ({
     type: SET_FILTERED_PRODUCTS,

@@ -1,18 +1,18 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchSingleProduct, addProductCart } from '@actions/products/products.actions'
+import { addProductCart } from '@actions/products/products.actions'
 import { animateBuyButton } from '@utils/animateBuyButton'
 import '@styles/pages/SingleProduct.scss'
 
 const SingleProduct = () => {
     const dispatch = useDispatch()
-    const state = useSelector(state => state)
-    const { confMerch: { productsInDetail }, ui: { modal }} = state
-    const amountOfProducts = productsInDetail.length
-    const product = productsInDetail[amountOfProducts - 1]
+    const modal = useSelector(state => state.ui.modal)
+    //const { confMerch: {  }, ui: { modal }} = state
+    //const amountOfProducts = productsInDetail.length
+    //const product = productsInDetail[amountOfProducts - 1]
     const location = useLocation()
-    const id = location.state
+    const product = location.state
 
     const handleBuyProduct = (event) => {
         animateBuyButton(event)
@@ -38,7 +38,7 @@ const SingleProduct = () => {
 
     React.useEffect(() => {
         //Ver si ese id ya existe en productsInDetail, sino, hacer fetch, si existe, mostrar ese producto
-        dispatch(fetchSingleProduct(id))
+        //dispatch(fetchSingleProduct(id))
     }, [])
     
     if(product) {

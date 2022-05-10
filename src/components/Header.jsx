@@ -22,7 +22,7 @@ const Header = () => {
         dispatch(toggleModal())
     }
     React.useEffect(() => {
-        //Depending of the pathname, the shopping cart will be hidden in any route with exception of "/" and "/checkout"
+        //Depending of the pathname, the shopping cart will be hidden in any route with exception of "/" and any route that has the word product
          if((location.pathname === '/')||(location.pathname.includes('product'))){
              setHideCart(false)
          }else {

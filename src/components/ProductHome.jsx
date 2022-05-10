@@ -30,7 +30,7 @@ const ProductHome = ({product}) => {
         }
         const searchInput = document.querySelector('.observer')
         unFixHeader(searchInput)
-        navigate(`/product/:${product.id}`, {state: product.id})
+        navigate(`/product/:${product.id}`, {state: product})
     }
     React.useEffect(() => {
         lazyLoadingImages()

@@ -12,17 +12,7 @@ function* fetchProducts(action) {
     }
 }
 
-function* fetchSingleProduct(action) {
-    try {
-        const product = yield call(getSingleProduct, action.payload)
-        yield put(setSingleProduct(product))
-    } catch (error) {
-        console.error('fetching single product error',error)
-    }
-}
-
 function* productsSaga() {
     yield takeEvery(FETCH_PRODUCTS, fetchProducts)
-    yield takeEvery(FETCH_SINGLE_PRODUCT, fetchSingleProduct)
 }
 export {productsSaga}
