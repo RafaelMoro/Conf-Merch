@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleQuantityEmpty } from '@actions/ui/ui.actions'
+import { modifyQuantity } from '@actions/products/products.actions'
 import {ErrorMessage} from '@components/ErrorMessage'
 import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
@@ -8,7 +9,7 @@ import { Context } from '../hooks/stateContext';
 const Product = ({product}) => {
     const quantityInputEmpty = useSelector(state => state.ui.quantityInputEmpty)
     const dispatch = useDispatch()
-    const {modifyQuantity, deleteProductFromCart} = React.useContext(Context)
+    const {deleteProductFromCart} = React.useContext(Context)
     //This state is to show the user to fill a quantity but only the product where the input is empty
     const [fillQuantity, setFillQuantity] = React.useState(false)
 
@@ -26,7 +27,7 @@ const Product = ({product}) => {
                 setTimeout(() => setFillQuantity(false), 900)
             }
             quantityInputEmpty && dispatch(toggleQuantityEmpty())
-            modifyQuantity(newQuantity, product)
+            dispatch(modifyQuantity({newQuantity, product}))
         }
     }
     return (

@@ -1,4 +1,4 @@
-import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS } from "@actions/products/products.type"
+import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS, MODIFY_QUANTITY_PRODUCT } from "@actions/products/products.type"
 
 const initialState = {
     products: [],
@@ -17,7 +17,6 @@ const productsReducer = (state = initialState, action) => {
                 filteredProducts: action.payload
             }
         case SET_TOTALS:
-            console.log(action.payload)
             return {
                 ...state,
                 totalCartItems: action.payload.totalQuantityItems,
@@ -48,6 +47,20 @@ const productsReducer = (state = initialState, action) => {
                     //The product is new in the cart, add it.
                     return {...state, cart: [...cart, newProduct]}
                 }
+            }
+        case MODIFY_QUANTITY_PRODUCT:
+            const quantityNumber = parseInt(action.payload.newQuantity)
+            if(state.cart.length > 0) {
+                const modifiedCart =  state.cart.map(product => {
+                    if(product.id === action.payload.product.id) {
+                        return {...product, quantity: quantityNumber }
+                    }else {
+                        return {...product}
+                    }
+                })
+                return { ...state, cart: modifiedCart}
+            }else {
+                return {...state}
             }
         case SET_FILTERED_PRODUCTS:
             return {...state, filteredProducts: action.payload}

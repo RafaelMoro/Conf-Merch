@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS } from "./products.type"
+import { FETCH_PRODUCTS, SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS, MODIFY_QUANTITY_PRODUCT } from "./products.type"
 
 const setProducts = (payload) => ({
     type: SET_PRODUCTS,
@@ -19,5 +19,9 @@ const addProductCart = (payload) => ({
     type: ADD_PRODUCT_CART,
     payload
 })
+const modifyQuantity = (payload) => ({
+    type: MODIFY_QUANTITY_PRODUCT,
+    payload
+})
 
-export {setProducts, fetchProducts, addProductCart, setFilteredProducts, setTotals}
+export { setProducts, fetchProducts, addProductCart, setFilteredProducts, setTotals, modifyQuantity }
