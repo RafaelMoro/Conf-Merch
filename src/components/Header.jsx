@@ -2,13 +2,13 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleModal } from '@actions/ui/ui.actions'
-import { Context } from '../hooks/stateContext';
 import logo from '@images/logo.webp'
 import '@styles/components/Header.scss'
 
 const Header = () => {
-    const {state: {cart, totalCartItems}} = React.useContext(Context)
     const dispatch = useDispatch()
+    const confMerch = useSelector(state => state.confMerch)
+    const {cart, totalCartItems} = confMerch
     const [hideCart, setHideCart] = React.useState(false)
     const location = useLocation()
 

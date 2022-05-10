@@ -1,9 +1,11 @@
-import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS } from "@actions/products/products.type"
+import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS, SET_TOTALS } from "@actions/products/products.type"
 
 const initialState = {
     products: [],
     filteredProducts: [],
-    cart: []
+    cart: [],
+    totalCartItems: 0,
+    totalPayment: 0
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -13,6 +15,13 @@ const productsReducer = (state = initialState, action) => {
                 ...state,
                 products: action.payload,
                 filteredProducts: action.payload
+            }
+        case SET_TOTALS:
+            console.log(action.payload)
+            return {
+                ...state,
+                totalCartItems: action.payload.totalQuantityItems,
+                totalPayment: action.payload.totalPay
             }
         case ADD_PRODUCT_CART:
             const newProduct = {...action.payload, quantity: 1}

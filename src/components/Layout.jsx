@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProducts } from '@actions/products/products.actions'
+import { fetchProducts, setTotals } from '@actions/products/products.actions'
 import {Header} from '@components/Header'
 import {Footer} from '@components/Footer'
 import {Modal} from '@components/Modal'
@@ -14,6 +14,13 @@ const Layout = ({ children }) => {
     React.useEffect(() => {
         dispatch(fetchProducts())
     }, [])
+    React.useEffect(() => {
+        if(cart.length > 0) {
+            const totalQuantityItems = cart.reduce((acc, product) => acc + parseInt(product.quantity), 0)
+            const totalPay = cart.reduce((acc, product) => (acc + (product.price * product.quantity)), 0)
+            dispatch(setTotals({totalQuantityItems, totalPay}))
+        }
+    }, [cart])
     return (
         <div className="layout">
             {modal && <Modal cart={cart}/>}
