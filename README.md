@@ -20,19 +20,23 @@ Here are all the technologies, libraries used on this project:
 
 | Technologies / Libraries | Description |
 | ----------- | ----------- |
-| Public API | Platzi Fake Store API |
+| Platzi Fake Store API | Public API |
 | React | UI Interface  |
 | React Router  | Routing  |
+| Redux  | State Management  |
+| Redux Saga  | Asynchronous functions handlement  |
+| React Hook Form  | Form Validation  |
 | Webpack  | Module Bundler  |
 | SASS  | CSS handlement |
 | @paypal/react-paypal-js |  Paypal SDK in React |
 | Leaflet and React Leaflet |  Map rendering |
 | AniCollection | CSS Animations |
+| country-state-city | Countries, states and cities database |
 
-In React, I used some hooks such as useState, useEffect, useRef for the form handlement, useContext for the global use of the state. useNavigate to send the user to the next screen. useLocation to pass any props between pages.
+In React, I used some hooks such as useState, useEffect, useNavigate to send the user to the next screen. useLocation to pass any props between pages. For the form validation, I use regular expressions to assure information validity. I use the package country-state-city to handle these information properly, avoid typos and fake information.
 I fetched the information of this fake store from a public API.
 
-This project will be in continous improvement.
+This project is on continous improvement.
 
 The website was launched into production with Netlify. This is the link: https://vocal-eclair-4a8151.netlify.app
 
