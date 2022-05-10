@@ -23,14 +23,10 @@ const Header = () => {
     }
     React.useEffect(() => {
         //Depending of the pathname, the shopping cart will be hidden in any route with exception of "/" and "/checkout"
-         if((location.pathname === '/') || (location.pathname === '/checkout')){
+         if((location.pathname === '/')||(location.pathname.includes('product'))){
              setHideCart(false)
          }else {
-             if(location.pathname.includes('product')) {
-                setHideCart(false)
-             }else {
-                setHideCart(true)
-             }
+            setHideCart(true)
          }
     }, [location.pathname])
 
