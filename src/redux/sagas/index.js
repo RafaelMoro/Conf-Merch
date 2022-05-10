@@ -6,7 +6,6 @@ import {FETCH_PRODUCTS} from '../actions/products/products.type'
 function* fetchProducts(action) {
     try {
         const products = yield call(getProducts)
-        console.log(products)
         yield put(setProducts(products))
     } catch (error) {
         console.error(error)

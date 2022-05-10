@@ -1,5 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import {addProductCart} from '@actions/products/products.actions'
 import '@styles/components/Product.scss'
 import { Context } from '../hooks/stateContext';
 import { unFixHeader } from '@utils/fixHeader'
@@ -8,10 +10,12 @@ import { animateBuyButton } from '@utils/animateBuyButton'
 
 const ProductHome = ({product}) => {
     const {addToCart, modal} = React.useContext(Context)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     
     const handleBuyProduct = (event) => {
         animateBuyButton(event)
+        dispatch(addProductCart(product))
         addToCart(product)
     }
 
