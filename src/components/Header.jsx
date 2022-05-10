@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleModal } from '@actions/ui/ui.actions'
 import { Context } from '../hooks/stateContext';
 import logo from '@images/logo.webp'
 import '@styles/components/Header.scss'
 
 const Header = () => {
-    const {state: {cart, totalCartItems}, toggleModal} = React.useContext(Context)
+    const {state: {cart, totalCartItems}} = React.useContext(Context)
+    const dispatch = useDispatch()
     const [hideCart, setHideCart] = React.useState(false)
     const location = useLocation()
 
@@ -16,7 +19,7 @@ const Header = () => {
         }else {
             header.classList.add('darken-bg')
         }
-        toggleModal()
+        dispatch(toggleModal())
     }
     React.useEffect(() => {
         //Depending of the pathname, the shopping cart will be hidden in any route with exception of "/" and "/checkout"

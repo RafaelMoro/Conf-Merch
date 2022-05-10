@@ -5,15 +5,14 @@ import { fetchProducts } from '@actions/products/products.actions'
 import {Products} from '@containers/Products'
 import {ProductHome} from '@components/ProductHome'
 import {SearchBar} from '@components/SearchBar'
-import { Context } from '../hooks/stateContext'
 import { fixHeader } from '@utils/fixHeader'
 import '@styles/pages/Home.scss'
 
 const Home = () => {
     const dispatch = useDispatch()
-    const filteredProductsRedux = useSelector(state => state.filteredProducts)
+    const filteredProducts = useSelector(state => state.confMerch.filteredProducts)
+    const modal = useSelector(state => state.ui.modal)
 
-    const {modal, filteredProducts} = React.useContext(Context)
     React.useEffect(() => {
         dispatch(fetchProducts())
         const searchInput = document.querySelector('.observer')
@@ -24,7 +23,7 @@ const Home = () => {
             <SearchBar />
             <Products>
                 {
-                    filteredProductsRedux.map((product, index) => {
+                    filteredProducts.map((product, index) => {
                        const newProduct = {
                            ...product,
                            numberProduct: index + 1

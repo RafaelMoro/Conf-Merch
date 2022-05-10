@@ -4,7 +4,7 @@ import {createStore, compose, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import createSagaMiddleware from '@redux-saga/core'
 import { productsSaga } from '../redux/sagas'
-import { productsReducer } from '../redux/reducers/products.reducer'
+import { rootReducer } from '../redux/reducers/root.reducer'
 
 import { Home } from '@pages/Home'
 import { NotFound } from '@pages/NotFound'
@@ -20,7 +20,7 @@ import '@styles/main.scss'
 const sagaMiddleware = createSagaMiddleware()
 const composeAlt = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose
 const composedEnhancers = composeAlt(applyMiddleware(sagaMiddleware))
-const store = createStore(productsReducer, composedEnhancers)
+const store = createStore(rootReducer, composedEnhancers)
 sagaMiddleware.run(productsSaga)
 const App = () => {
     return(

@@ -1,11 +1,14 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { Context } from '../hooks/stateContext'
 import { animateBuyButton } from '@utils/animateBuyButton'
 import '@styles/pages/SingleProduct.scss'
 
 const SingleProduct = () => {
-    const {addToCart, modal} = React.useContext(Context)
+    const {addToCart} = React.useContext(Context)
+    const modal = useSelector(state => state.ui.modal)
+    
     const location = useLocation()
     const id = location.state
     const [product, setProduct] = React.useState(false)

@@ -1,4 +1,4 @@
-import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS } from "../actions/products/products.type"
+import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS } from "@actions/products/products.type"
 
 const initialState = {
     products: [],

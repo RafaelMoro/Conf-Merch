@@ -1,12 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFilteredProducts } from '@actions/products/products.actions'
-import {Context} from '../hooks/stateContext'
 import '@styles/components/SearchBar.scss'
 
 const SearchBar = () => {
     const dispatch = useDispatch()
-    const products = useSelector(state => state.products)
+    const products = useSelector(state => state.confMerch.products)
 
     const filterProducts = (event) => {
         const searchedValue = (event.target.value).toLowerCase()
