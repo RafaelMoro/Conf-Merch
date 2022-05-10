@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 import {Product} from '@components/Product'
 import { Context } from '../hooks/stateContext';
 import '@styles/pages/Checkout.scss'
 
 const Checkout = () => {
-    const {state: {cart, totalPayment}, modal, quantityEmpty} = React.useContext(Context)
+    const modal = useSelector(state => state.ui.modal)
+    const cart = useSelector(state => state.confMerch.cart)
+    const {state: { totalPayment}, quantityEmpty} = React.useContext(Context)
 
     if((cart)&&(cart.length > 0)) {
         return(
