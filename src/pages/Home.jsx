@@ -11,7 +11,7 @@ import '@styles/pages/Home.scss'
 
 const Home = () => {
     const dispatch = useDispatch()
-    const products = useSelector(state => state.products)
+    const filteredProductsRedux = useSelector(state => state.filteredProducts)
 
     const {modal, filteredProducts} = React.useContext(Context)
     React.useEffect(() => {
@@ -24,7 +24,7 @@ const Home = () => {
             <SearchBar />
             <Products>
                 {
-                   filteredProducts && filteredProducts.map((product, index) => {
+                    filteredProductsRedux.map((product, index) => {
                        const newProduct = {
                            ...product,
                            numberProduct: index + 1

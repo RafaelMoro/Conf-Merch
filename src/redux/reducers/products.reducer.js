@@ -1,14 +1,19 @@
-import { SET_PRODUCTS, ADD_PRODUCT_CART } from "../actions/products/products.type"
+import { SET_PRODUCTS, ADD_PRODUCT_CART, SET_FILTERED_PRODUCTS } from "../actions/products/products.type"
 
 const initialState = {
     products: [],
+    filteredProducts: [],
     cart: []
 }
 
 const productsReducer = (state = initialState, action) => {
     switch(action.type) {
         case SET_PRODUCTS:
-            return {...state, products: action.payload}
+            return {
+                ...state,
+                products: action.payload,
+                filteredProducts: action.payload
+            }
         case ADD_PRODUCT_CART:
             const newProduct = {...action.payload, quantity: 1}
             const { cart } = state
@@ -35,6 +40,8 @@ const productsReducer = (state = initialState, action) => {
                     return {...state, cart: [...cart, newProduct]}
                 }
             }
+        case SET_FILTERED_PRODUCTS:
+            return {...state, filteredProducts: action.payload}
         default:
             return {...state}
     }
