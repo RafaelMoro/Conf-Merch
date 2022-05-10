@@ -4,12 +4,10 @@ import { toggleQuantityEmpty } from '@actions/ui/ui.actions'
 import { modifyQuantity, deleteProductCart } from '@actions/products/products.actions'
 import {ErrorMessage} from '@components/ErrorMessage'
 import '@styles/components/Product.scss'
-import { Context } from '../hooks/stateContext';
 
 const Product = ({product}) => {
     const quantityInputEmpty = useSelector(state => state.ui.quantityInputEmpty)
     const dispatch = useDispatch()
-    //const {deleteProductFromCart} = React.useContext(Context)
     //This state is to show the user to fill a quantity but only the product where the input is empty
     const [fillQuantity, setFillQuantity] = React.useState(false)
 
