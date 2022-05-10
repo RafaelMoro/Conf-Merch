@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from "react-hook-form"
 
-import { Context } from '../../hooks/stateContext'
+import { addBuyer } from '@actions/products/products.actions'
 import {Countries} from '@components/Countries'
 import { StatesCountry } from '@components/StatesCountry'
 import {Cities} from '@components/Cities'
@@ -15,8 +16,10 @@ import { optionsValidation } from './optionsFormValidation'
 import '@styles/pages/Information.scss'
 
 const Information = () => {
+    const dispatch = useDispatch()
+    const confMerch = useSelector(state => state.confMerch)
+    const { cart, totalPayment} = confMerch
     const countries = getCountries()
-    const {state: {cart, totalPayment}, addBuyer} = React.useContext(Context)
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [addressNotSelected, setAddressNotSelected] = React.useState({
@@ -74,16 +77,18 @@ const Information = () => {
                         countryState: "No states available for this country",
                         city: "No city available for this country"
                     }
-                    addBuyer(updatedData)
+                    console.log(updatedData)
+                    dispatch(addBuyer(updatedData))
                 }else {
-                    addBuyer(customerInformation)
+                    console.log(customerInformation)
+                    dispatch(addBuyer(customerInformation))
                 }
                 navigate('/checkout/payment')
             }
         }
     }
 
-    if((cart)&&(cart.length > 0)) {
+    if(cart.length > 0) {
         return (
             <main className='information'>
                 <h1 className='information__title'>Información de contacto: </h1>

@@ -1,11 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { Context } from '../hooks/stateContext';
+import { useDispatch, useSelector } from 'react-redux'
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
+import { addOrder } from '@actions/products/products.actions'
 import '@styles/pages/Payment.scss'
 
 const Payment = () => {
-    const {state: {cart, buyer, totalPayment}, addNewOrder} = React.useContext(Context)
+    const dispatch = useDispatch()
+    const confMerch = useSelector(state => state.confMerch)
+    const { cart, buyers, totalPayment } = confMerch
     const navigate = useNavigate()
 
     const paypalOptions = {
@@ -27,11 +30,11 @@ const Payment = () => {
 
     const handlePaymentSuccess = (data) => {
         const newOrder = {
-            buyer,
+            buyers,
             products: cart,
             payment: data
         }
-        addNewOrder(newOrder)
+        dispatch(addOrder(newOrder))
         navigate('/checkout/success')
     }
     
