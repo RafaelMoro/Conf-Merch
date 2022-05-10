@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toggleModal } from '@actions/ui/ui.actions'
 import {Product} from '@components/Product'
 import { Context } from '../hooks/stateContext'
@@ -8,8 +8,9 @@ import { unFixHeader } from '@utils/fixHeader'
 import '@styles/components/Modal.scss'
 
 const Modal = ({cart}) => {
-    const {quantityEmpty} = React.useContext(Context)
+    //const {quantityEmpty} = React.useContext(Context)
     const dispatch = useDispatch()
+    const quantityInputEmpty = useSelector(state => state.ui.quantityInputEmpty)
 
     const closeModal = () => {
         const divModal = document.querySelector('#modal')
@@ -62,7 +63,7 @@ const Modal = ({cart}) => {
                 <div className='products--modal'>
                     {cart.map(product => (product.quantity > 0 && <Product product={product} key={product.id} />))}
                 </div>
-                <Link className='modal__pay-anchor' to="/checkout"><button className='modal__pay-button' disabled={quantityEmpty} onClick={goCheckout}>Proceder al pago</button></Link>
+                <Link className='modal__pay-anchor' to="/checkout"><button className='modal__pay-button' disabled={quantityInputEmpty} onClick={goCheckout}>Proceder al pago</button></Link>
             </div>
         )
     }

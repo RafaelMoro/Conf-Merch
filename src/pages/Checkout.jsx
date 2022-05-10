@@ -1,14 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux';
-import {Product} from '@components/Product'
-import { Context } from '../hooks/stateContext';
+import { useSelector } from 'react-redux'
+import { Product } from '@components/Product'
 import '@styles/pages/Checkout.scss'
 
 const Checkout = () => {
-    const modal = useSelector(state => state.ui.modal)
-    const cart = useSelector(state => state.confMerch.cart)
-    const {state: { totalPayment}, quantityEmpty} = React.useContext(Context)
+    const state = useSelector(state => state)
+    const { confMerch: {cart, totalPayment}, ui: { modal, quantityInputEmpty } } = state
 
     if((cart)&&(cart.length > 0)) {
         return(
@@ -22,7 +20,7 @@ const Checkout = () => {
                 <div className='checkout__total'>
                     <p>Precio total: <span>${totalPayment} USD</span></p>
                     <Link to="/"><button className='button--cancel'>Continuar comprando</button></Link>
-                    <Link to="/checkout/information"><button className='button--proceed' disabled={quantityEmpty}>Finalizar Pedido</button></Link>
+                    <Link to="/checkout/information"><button className='button--proceed' disabled={quantityInputEmpty}>Finalizar Pedido</button></Link>
                 </div>
             </section>
         )
