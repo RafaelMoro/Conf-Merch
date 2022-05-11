@@ -1,28 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {getCitiesOfCountry} from '@utils/getAddress'
 
-const Cities = (props) => {
-    React.useEffect(() => {
+const Cities = ({ address, setAddress, showCities, noCitiesAvailable}) => {
+    const { cities, statesCountry, countrySelected } = address
+    const noStateSelected = cities[0] === "No State Selected" ? true : false
+    
+    useEffect(() => {
         //If there's no country states, try to found their cities of that country
-        if(props.address.statesCountry < 1) {
+        if(statesCountry < 1) {
             //Attempt of getting the cities of a country in case no country state was found in that country
-            const citiesOfCountry = getCitiesOfCountry(props.address.countrySelected[0])
+            const countryCode = countrySelected[0]
+            const citiesOfCountry = getCitiesOfCountry(countryCode)
             if(citiesOfCountry.length < 1) {
-                props.setAddress({
-                    ...props.address,
-                    citySelected: 'No cities available on this country'
+                setAddress({
+                    ...address,
+                    citySelected: "No cities available on this country"
+                })
+            }else {
+                setAddress({
+                    ...address,
+                    cities: citiesOfCountry
                 })
             }
-            props.setAddress({
-                ...props.address,
-                cities: citiesOfCountry
-            })
         }
-    }, [props.address.statesCountry])
+    }, [address.statesCountry])
 
     const handleSetCity = (event) => {
         const cityName = event.target.value
-        const {address, setAddress} = props
         setAddress({
             ...address,
             citySelected: cityName
@@ -31,11 +35,10 @@ const Cities = (props) => {
 
     return(
         <>
-            {(props.address.cities.length < 1 && props.address.statesCountry.length < 1) && props.noCitiesAvailable()}
-            { props.address.cities.length > 0 && <select className="input input--select" defaultValue="default" onChange={handleSetCity} disabled={props.address.cities[0] === "No State Selected"}>
+            {(cities.length < 1 && statesCountry.length < 1) && noCitiesAvailable()}
+            { cities.length > 0 && <select className="input input--select" defaultValue="default" onChange={handleSetCity} disabled={noStateSelected}>
                         <option value="default" disabled> Seleccione una ciudad: </option>
-                        { props.address.cities.map(props.showCities) }
-                        {props.children}
+                        { cities.map(showCities) }
                     </select>
             }
         </>
