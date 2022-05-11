@@ -35,10 +35,6 @@ const Information = () => {
         citySelected: ''
     })
 
-    React.useEffect(() => {
-        console.log(address)
-    }, [address])
-
     const saveInformation = (customerData) => {
         const numberErrors = Object.keys(errors).length
         const customerInformation = {
