@@ -11,7 +11,6 @@ import {InputForm} from '@components/InputForm'
 import {ErrorMessage} from '@components/ErrorMessage'
 
 import { getCountries } from '@utils/getAddress'
-import {generateRandomNumber} from '@utils/generateRandomNumber'
 import { optionsValidation } from './optionsFormValidation'
 import '@styles/pages/Information.scss'
 
@@ -35,6 +34,10 @@ const Information = () => {
         cities: ['No State Selected'],
         citySelected: ''
     })
+
+    React.useEffect(() => {
+        console.log(address)
+    }, [address])
 
     const saveInformation = (customerData) => {
         const numberErrors = Object.keys(errors).length
@@ -91,57 +94,23 @@ const Information = () => {
             <main className='information'>
                 <h1 className='information__title'>Información de contacto: </h1>
                 <form className='form' onSubmit={handleSubmit(saveInformation)}>
-                    <InputForm
-                        type="text"
-                        placeholder="Nombre Completo"
-                        register={register}
-                        options={optionsValidation.name}
-                        inputName="name"
-                    />
+                    <InputForm type="text" placeholder="Nombre Completo" register={register} options={optionsValidation.name} inputName="name" />
                     {errors?.name && <ErrorMessage message={errors?.name?.message} cssClass="message--form"/>}
 
-                    <InputForm
-                        type="email"
-                        placeholder="Correo electrónico"
-                        register={register}
-                        options={optionsValidation.email}
-                        inputName="email"
-                    />
+                    <InputForm type="email" placeholder="Correo electrónico" register={register} options={optionsValidation.email} inputName="email"/>
                     {errors?.email && <ErrorMessage message={errors?.email?.message} cssClass="message--form"/>}
 
-                    <InputForm
-                        type="number"
-                        placeholder="Teléfono"
-                        register={register}
-                        options={optionsValidation.phone}
-                        inputName="phone"
-                    />
+                    <InputForm type="number" placeholder="Teléfono" register={register} options={optionsValidation.phone} inputName="phone"/>
                     {errors?.phone && <ErrorMessage message={errors?.phone?.message} cssClass="message--form"/>}
 
-                    <InputForm
-                        type="text"
-                        placeholder="Dirección"
-                        register={register}
-                        options={optionsValidation.address}
-                        inputName="address"
-                    />
+                    <InputForm type="text" placeholder="Dirección" register={register }options={optionsValidation.address} inputName="address"/>
                     {errors?.address && <ErrorMessage message={errors?.address?.message} cssClass="message--form"/>}
 
-                    <InputForm
-                        type="text"
-                        placeholder="Apartamento"
-                        register={register}
-                        options={optionsValidation.apartment}
-                        inputName="apartment"
+                    <InputForm type="text" placeholder="Apartamento" register={register} options={optionsValidation.apartment} inputName="apartment"
                     />
                     {errors?.apartment && <ErrorMessage message={errors?.apartment?.message} cssClass="message--form"/>}
 
-                    <InputForm
-                        type="number"
-                        placeholder="Código Postal"
-                        register={register}
-                        options={optionsValidation.postalCode}
-                        inputName="postalCode"
+                    <InputForm type="number" placeholder="Código Postal" register={register} options={optionsValidation.postalCode} inputName="postalCode"
                     />
                     {errors?.postalCode && <ErrorMessage message={errors?.postalCode?.message} cssClass="message--form"/>}
 
@@ -153,12 +122,11 @@ const Information = () => {
                     {addressNotSelected.country && <ErrorMessage message="Seleccione un país" cssClass="message--form" />}
 
                     <StatesCountry address={address} setAddress={setAddress}
-                        noStatesAvailable={() => <p className="form__countrystate--not-found">No hay estados disponibles para este país.</p>}
+                        noStatesAvailable={() => (<p className="form__countrystate--not-found">No hay estados disponibles para este país.</p>)}
                         showStates={
-                            (stateOfCountry) => {
-                                const randomNumber = generateRandomNumber()
+                            (stateOfCountry, index) => {
                                 return(
-                                    <option key={`${stateOfCountry.isoCode}${randomNumber}`} value={stateOfCountry.isoCode}>
+                                    <option key={index} value={stateOfCountry.isoCode}>
                                         {stateOfCountry.name}
                                     </option>
                                 )
@@ -170,14 +138,11 @@ const Information = () => {
                     <Cities address={address} setAddress={setAddress}
                         noCitiesAvailable={() => <p className="form__countrystate--not-found">No hay ciudades disponibles para este país.</p>}
                         showCities={
-                            (city) => {
-                                const randomNumber = generateRandomNumber()
-                                return(
-                                    <option key={`${city.countryCode}${city.stateCode}${randomNumber}`} value={city.name}>
+                            (city, index) => (
+                                    <option key={index} value={city.name}>
                                         {city.name}
                                     </option>
                                 )
-                            }
                         }
                     />
                     {addressNotSelected.city && <ErrorMessage message="Selecciona una ciudad" cssClass="message--form" />}
